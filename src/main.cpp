@@ -3,17 +3,20 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
+#include "t1.h"
 
 int main(void)
 {
     GLFWwindow* window;
+
+    t1* x = new t1();
 
     /* Initialize the library */
     if (!glfwInit())
         return -1;
 
     /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(640, 480, "GLFW CMake starter", NULL, NULL);
+    window = glfwCreateWindow(1280, 720, "Project Eagle", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -38,7 +41,15 @@ int main(void)
         /* Poll for and process events */
         glfwPollEvents();
 
-        std::cout << sango.y << std::endl;
+        // std::cout << sango.y << std::endl;
+
+        if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        {
+            glfwSetWindowShouldClose(window, true);
+        }
+        
+        x->yer();
+
     }
 
     glfwTerminate();

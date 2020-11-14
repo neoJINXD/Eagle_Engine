@@ -11,10 +11,15 @@ find_package( OpenGL REQUIRED )
 include_directories( ${OPENGL_INCLUDE_DIRS} )
 
 # Main Executable
-set( Project_Eagle-SRC
-     main.cpp
-     )
+# set( Project_Eagle-SRC
+#      src/main.cpp
+#      )
      
+file(GLOB Project_Eagle-SRC
+     "src/*.h"
+     "src/*.cpp"
+)
+
 add_executable( Project_Eagle ${Project_Eagle-SRC} )
 
 # GLFW
