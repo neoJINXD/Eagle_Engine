@@ -2,9 +2,6 @@ cmake_minimum_required( VERSION 3.1 )
 
 project( Project_Eagle VERSION 0.0.0 )
 
-# Testing Module
-include(CTest)
-enable_testing()
 
 # OpenGL Module
 find_package( OpenGL REQUIRED )
@@ -14,10 +11,10 @@ include_directories( ${OPENGL_INCLUDE_DIRS} )
 # set( Project_Eagle-SRC
 #      src/main.cpp
 #      )
-     
+
 file(GLOB Project_Eagle-SRC
-     "src/*.h"
-     "src/*.cpp"
+"src/*.h"
+"src/*.cpp"
 )
 
 add_executable( Project_Eagle ${Project_Eagle-SRC} )
@@ -54,3 +51,9 @@ target_link_libraries(Project_Eagle PRIVATE glm)
 #         set_property( DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT Project_Eagle )
 #     endif()
 # endif()
+
+# Testing Module
+include(CTest)
+# enable_testing()
+add_executable(tester tests/temp.cpp)
+add_test(Tester tester)
