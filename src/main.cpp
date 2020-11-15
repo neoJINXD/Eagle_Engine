@@ -1,44 +1,97 @@
 #include <iostream>
 
+#ifndef GLEW_STATIC
+#define GLEW_STATIC 1
+#endif
+
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
-#include "t1.h"
+// #include "t1.h"
+
+//For error checking for error checking
+#define ASSERT(x) if (!(x)) __debugbreak();
+#define GLCall(x) GlClearError();\
+	x;\
+	ASSERT(glError(#x, __FILE__, __LINE__))
+
+static void GlClearError() {
+	while (glGetError() != 0);
+}
+
+static bool glError(const char* funct, const char* file, int line) {
+	while (GLenum err = glGetError()) {
+		std::cout << "[OpenGL Error]: " << err << funct << " " << file << " : " << line << ";" << std::endl;
+		return false;
+	}
+	return true;
+}
+
 
 int main(void)
 {
     GLFWwindow* window;
 
-    t1* x = new t1();
+    // t1* x = new t1();
 
     /* Initialize the library */
     if (!glfwInit())
         return -1;
 
     /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(1280, 720, "Project Eagle", NULL, NULL);
+    window = glfwCreateWindow(1024, 768, "Project Eagle", NULL, NULL);
     if (!window)
     {
+        std::cerr << "Failed to create GLFW window!" << std::endl;
         glfwTerminate();
         return -1;
     }
 
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
-    glClearColor( 0.0f, 0.0f, 1.0f, 0.0f );
 
-    glm::vec3 sango(1.f, 1.f, 1.f);
+    // Initialize GLEW
+	if (glewInit() != GLEW_OK) {
+		std::cerr << "Failed to create GLEW" << std::endl;
+		glfwTerminate();
+		return -1;
+	}
+
+
+    // TODO handle shaders
+
+    // TODO create temp shapes
+
+    // TODO have camera
+
+
+
+    glEnable(GL_CULL_FACE);
+    glEnable(GL_DEPTH_TEST);
+
+
+    glClearColor(0.11f, 0.44f, 0.68f, 1.0f);
+
+    float lastFrameTime = glfwGetTime();
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
-        /* Render here */
-        glClear(GL_COLOR_BUFFER_BIT);
+        // deltaTime calculation
+        float dt = glfwGetTime() - lastFrameTime;
+        lastFrameTime += dt;
 
-        /* Swap front and back buffers */
+        // Clears depth and color buffer
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        
+        
+        // TODO Render Objects/Models
+
+        //Swap Buffers
         glfwSwapBuffers(window);
 
-        /* Poll for and process events */
+        //Check/call events
         glfwPollEvents();
 
         // std::cout << sango.y << std::endl;
@@ -47,11 +100,9 @@ int main(void)
         {
             glfwSetWindowShouldClose(window, true);
         }
-        
-        x->yer();
-
     }
 
     glfwTerminate();
+
     return 0;
 }
