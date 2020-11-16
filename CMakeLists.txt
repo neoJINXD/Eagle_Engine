@@ -27,7 +27,7 @@ target_link_libraries(Project_Eagle PRIVATE glfw)
 
 # GLEW
 add_definitions(-DGLEW_STATIC)
-add_subdirectory(modules/glew EXCLUDE_FROM_ALL)
+add_subdirectory(modules/glew-cmake EXCLUDE_FROM_ALL)
 target_link_libraries(Project_Eagle PRIVATE libglew_static)
 
 # GLM
