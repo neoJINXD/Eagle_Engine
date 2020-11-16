@@ -12,7 +12,11 @@
 
 Shader::Shader(string vertFilePath, string fragFilePath)
 {
-    //TODO
+    vertShader = readShaderFromFile(vertFilePath.c_str());
+    fragShader = readShaderFromFile(fragFilePath.c_str());
+
+    compileShader();
+    linkShader();
 }
 
 Shader::~Shader()
@@ -29,7 +33,7 @@ string Shader::readShaderFromFile(const char* fileName)
     // Stops program if file stream fails to initialize
     if (!input.good())
     {
-        std::cerr << "SHADER::INVALID_FILE_INPUT" << std::endl;
+        std::cerr << "ERROR::SHADER::INVALID_FILE_INPUT" << std::endl;
         exit(-1); // TODO have some return that can be tested in the tests
     }
 
@@ -47,17 +51,67 @@ string Shader::readShaderFromFile(const char* fileName)
 
 void Shader::compileShader()
 {
-    //TODO
+    int success;
+    char infoLog[512];
+
+    // Vertex Shader
+    vertShaderID = glCreateShader(GL_VERTEX_SHADER);
+    const char* vertSource = vertShader.c_str();
+    glShaderSource(vertShaderID, 1, &vertSource, NULL);
+    glCompileShader(vertShaderID);
+
+    // verification
+    glGetShaderiv(vertShaderID, GL_COMPILE_STATUS, &success);
+    if (!success)
+    {
+        glGetShaderInfoLog(vertShaderID, 512, NULL, infoLog);
+        std::cerr << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl; 
+    }
+
+
+    // Fragment Shader
+    fragShaderID = glCreateShader(GL_FRAGMENT_SHADER);
+    const char* fragSource = fragShader.c_str();
+    glShaderSource(fragShaderID, 1, &fragSource, NULL);
+    glCompileShader(fragShaderID);
+
+    // verification
+    glGetShaderiv(fragShaderID, GL_COMPILE_STATUS, &success);
+    if (!success)
+    {
+        glGetShaderInfoLog(fragShaderID, 512, NULL, infoLog);
+        std::cerr << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl; 
+    }
 }
 
 void Shader::linkShader()
 {
-    //TODO
+    // Linking Shader
+    shaderProgram = glCreateProgram();
+    glAttachShader(shaderProgram, vertShaderID);
+    glAttachShader(shaderProgram, fragShaderID);
+    glLinkProgram(shaderProgram);
+
+    // verification
+    int success;
+    char infoLog[512];
+    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+    if (!success) {
+        glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
+        std::cerr << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
+    }
+
+    glDetachShader(shaderProgram, vertShaderID);
+    glDetachShader(shaderProgram, fragShaderID);
+
+    // TODO might wanna move this to destructor, not sure
+    glDeleteShader(vertShaderID);
+    glDeleteShader(fragShaderID);
 }
 
 void Shader::use()
 {
-    //TODO
+    glUseProgram(shaderProgram);
 }
 
 // TODO add utility methods to pass values into the shader
