@@ -34,23 +34,10 @@ target_link_libraries(Project_Eagle PRIVATE libglew_static)
 add_subdirectory( modules/glm EXCLUDE_FROM_ALL )
 target_link_libraries(Project_Eagle PRIVATE glm)
 
-# if( MSVC )
-#     SET( CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /ENTRY:mainCRTStartup" )
-# endif()
-
-# target_link_libraries( Project_Eagle ${OPENGL_LIBRARIES} glfw )
-
-# set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-# set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-# include(CPack)
-
-# if( MSVC )
-#     if(${CMAKE_VERSION} VERSION_LESS "3.6.0") 
-#         message( "\n\t[ WARNING ]\n\n\tCMake version lower than 3.6.\n\n\t - Please update CMake and rerun; OR\n\t - Manually set 'Project_Eagle' as StartUp Project in Visual Studio.\n" )
-#     else()
-#         set_property( DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT Project_Eagle )
-#     endif()
-# endif()
+# Grabbing Shader Files
+file(GLOB SHADER_FILES "src/shaders/*.glsl")
+file(COPY ${SHADER_FILES}
+    DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/shaders/")
 
 # Testing Module
 include(CTest)
