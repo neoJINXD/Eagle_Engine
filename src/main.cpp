@@ -8,8 +8,10 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
+// #define MEM_LEAK
 #include "shader.h"
 // #include "t1.h"
+#include "debug_new/debug_new.h"
 
 //For error checking for error checking
 #define ASSERT(x) if (!(x)) __debugbreak();
@@ -32,15 +34,16 @@ static bool glError(const char* funct, const char* file, int line) {
 
 int main(void)
 {
+    /*
     GLFWwindow* window;
 
     // t1* x = new t1();
 
-    /* Initialize the library */
+    // Initialize the library
     if (!glfwInit())
         return -1;
 
-    /* Create a windowed mode window and its OpenGL context */
+    // Create a windowed mode window and its OpenGL context
     window = glfwCreateWindow(1024, 768, "Project Eagle", NULL, NULL);
     if (!window)
     {
@@ -49,7 +52,7 @@ int main(void)
         return -1;
     }
 
-    /* Make the window's context current */
+    // Make the window's context current 
     glfwMakeContextCurrent(window);
 
     // Initialize GLEW
@@ -97,7 +100,7 @@ int main(void)
 
     float lastFrameTime = glfwGetTime();
 
-    /* Loop until the user closes the window */
+    // Loop until the user closes the window 
     while (!glfwWindowShouldClose(window))
     {
         // deltaTime calculation
@@ -131,6 +134,10 @@ int main(void)
     
 
     glfwTerminate();
+    */
 
+
+    int* t = new int(0);
+    
     return 0;
 }
