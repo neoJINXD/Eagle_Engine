@@ -44,3 +44,16 @@ include(CTest)
 # enable_testing()
 add_executable(tester tests/temp.cpp)
 add_test(Tester tester)
+
+# Memory Leak Checker
+
+file(GLOB MemTest-SRC
+    "src/debug_new/memTest.cpp"
+    "src/shader.cpp"
+)
+
+
+add_executable(MemTest ${MemTest-SRC})
+target_link_libraries(MemTest PRIVATE glfw)
+target_link_libraries(MemTest PRIVATE libglew_static)
+target_link_libraries(MemTest PRIVATE glm)
