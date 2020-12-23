@@ -10,9 +10,11 @@
 int main()
 {
     // Initialize the library
+    printf("Initializing glfw");
     if (!glfwInit())
         return -1;
 
+    printf("Creating window");
     // Create a windowed mode window and its OpenGL context
     GLFWwindow* window = glfwCreateWindow(1024, 768, "Project Eagle", NULL, NULL);
     if (!window)
@@ -22,9 +24,11 @@ int main()
         return -1;
     }
 
+    printf("Making window current context");
     // Make the window's context current 
     glfwMakeContextCurrent(window);
 
+    printf("Initializing glew");
     // WARNING Make sure to initialize GLFW window and set as main context otherwise this fails
     // Initialize GLEW
 	if (glewInit() != GLEW_OK) {
