@@ -41,19 +41,9 @@ file(COPY ${SHADER_FILES}
 
 # Testing Module
 include(CTest)
-# enable_testing()
-add_executable(tester tests/temp.cpp)
+enable_testing()
+add_executable(tester tests/test_memory.cpp)
+target_link_libraries(tester PRIVATE glfw)
+target_link_libraries(tester PRIVATE libglew_static)
+target_link_libraries(tester PRIVATE glm)
 add_test(Tester tester)
-
-# Memory Leak Checker
-
-file(GLOB MemTest-SRC
-    "src/debug_new/memTest.cpp"
-    "src/shader.cpp"
-)
-
-
-add_executable(MemTest ${MemTest-SRC})
-target_link_libraries(MemTest PRIVATE glfw)
-target_link_libraries(MemTest PRIVATE libglew_static)
-target_link_libraries(MemTest PRIVATE glm)
