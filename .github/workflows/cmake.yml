@@ -30,6 +30,7 @@ jobs:
       run: |
         sudo add-apt-repository ppa:ubuntu-x-swat/updates
         sudo apt-get dist-upgrade
+        sudo apt install mesa-utils
         glxinfo | grep "OpenGL version"
 
     - name: Create Build Environment
