@@ -29,7 +29,7 @@ jobs:
     - name: Checking OpenGL Version
       run: |
         sudo add-apt-repository ppa:ubuntu-x-swat/updates
-        sudo apt-get install mesa-utils
+        xvfb-run sudo apt-get install mesa-utils
         glxinfo | grep "OpenGL version"
       # sudo apt-get upgrade
       # sudo apt-get dist-upgrade
