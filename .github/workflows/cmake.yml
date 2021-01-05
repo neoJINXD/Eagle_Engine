@@ -28,10 +28,10 @@ jobs:
 
     - name: Checking OpenGL Version
       run: |
-        sudo add-apt-repository ppa:ubuntu-x-swat/updates
         sudo apt-get dist-upgrade
         sudo apt install mesa-utils
         glxinfo | grep "OpenGL version"
+      # sudo add-apt-repository ppa:ubuntu-x-swat/updates
 
     - name: Create Build Environment
       # Some projects don't allow in-source building, so create a separate build directory
