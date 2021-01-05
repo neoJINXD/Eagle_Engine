@@ -1,4 +1,4 @@
-name: CMake
+name: Eagle_Ubuntu
 
 on: [push]
 
