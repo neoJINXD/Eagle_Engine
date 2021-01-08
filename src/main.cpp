@@ -1,46 +1,26 @@
 #include <iostream>
 
-#ifndef GLEW_STATIC
-#define GLEW_STATIC 1
-#endif
+// #ifndef GLEW_STATIC
+// #define GLEW_STATIC 1
+// #endif
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
 #include "shader.h"
-// #include "t1.h"
-
-//For error checking for error checking
-#define ASSERT(x) if (!(x)) __debugbreak();
-#define GLCall(x) GlClearError();\
-	x;\
-	ASSERT(glError(#x, __FILE__, __LINE__))
-
-static void GlClearError() {
-	while (glGetError() != 0);
-}
-
-static bool glError(const char* funct, const char* file, int line) {
-	while (GLenum err = glGetError()) {
-		std::cout << "[OpenGL Error]: " << err << funct << " " << file << " : " << line << ";" << std::endl;
-		return false;
-	}
-	return true;
-}
-
 
 int main(void)
 {
+    
     GLFWwindow* window;
 
-    // t1* x = new t1();
 
-    /* Initialize the library */
+    // Initialize the library
     if (!glfwInit())
         return -1;
 
-    /* Create a windowed mode window and its OpenGL context */
+    // Create a windowed mode window and its OpenGL context
     window = glfwCreateWindow(1024, 768, "Project Eagle", NULL, NULL);
     if (!window)
     {
@@ -49,7 +29,7 @@ int main(void)
         return -1;
     }
 
-    /* Make the window's context current */
+    // Make the window's context current 
     glfwMakeContextCurrent(window);
 
     // Initialize GLEW
@@ -61,6 +41,7 @@ int main(void)
 
     // Basics shader
     Shader sh("shaders/vert.glsl","shaders/frag.glsl");
+
 
     // TODO create temp shapes
     float vertices[] = {
@@ -97,7 +78,7 @@ int main(void)
 
     float lastFrameTime = glfwGetTime();
 
-    /* Loop until the user closes the window */
+    // Loop until the user closes the window 
     while (!glfwWindowShouldClose(window))
     {
         // deltaTime calculation
@@ -127,8 +108,6 @@ int main(void)
             glfwSetWindowShouldClose(window, true);
         }
     }
-
-    
 
     glfwTerminate();
 

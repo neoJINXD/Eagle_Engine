@@ -41,6 +41,9 @@ file(COPY ${SHADER_FILES}
 
 # Testing Module
 include(CTest)
-# enable_testing()
-add_executable(tester tests/temp.cpp)
+enable_testing()
+add_executable(tester tests/test_memory.cpp)
+target_link_libraries(tester PRIVATE glfw)
+target_link_libraries(tester PRIVATE libglew_static)
+target_link_libraries(tester PRIVATE glm)
 add_test(Tester tester)
