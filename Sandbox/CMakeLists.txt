@@ -1,12 +1,12 @@
-# set (EAGLE_SANDBOX_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
+file(GLOB Sandbox_CPP "src/*.cpp")
+file(GLOB Sandbox_H "src/*.h")
 
-# file(GLOB EAGLE_SANDBOX_SRC
-#     "src/*.h"
-#     "src/*.cpp"
-# )
-
-# add_executable(EAGLE_SANDBOX ${EAGLE_SANDBOX_SRC})
-add_executable(Sandbox src/main.cpp)
+# Sandbox EXE
+add_executable(
+    Sandbox 
+    ${Sandbox_CPP}
+    ${Sandbox_H}
+    )
 
 
 # target_include_directories(EAGLE_SANDBOX PRIVATE ${EAGLE_SANDBOX_DIR})

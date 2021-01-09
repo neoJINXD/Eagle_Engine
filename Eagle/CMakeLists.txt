@@ -1,13 +1,7 @@
-# set (EAGLE_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
-
-# file(GLOB EAGLE_LIB_SRC
-#     "src/*.h"
-#     "src/*.cpp"
-# )
 file(GLOB Eagle_CPP "src/*.cpp")
 file(GLOB Eagle_H "src/*.h")
 
-# add_library(EAGLE_LIB SHARED ${Eagle_LIB_SRC})
+# Eagle Library
 add_library(
     Eagle STATIC
     ${Eagle_CPP}
