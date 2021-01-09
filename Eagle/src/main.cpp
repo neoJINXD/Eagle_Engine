@@ -10,7 +10,7 @@
 
 #include "shader.h"
 
-int main(void)
+int main_func()
 {
     
     GLFWwindow* window;
