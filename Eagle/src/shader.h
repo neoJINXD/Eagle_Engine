@@ -3,24 +3,27 @@
 #include <string>
 using std::string;
 
-class Shader
+namespace Eagle
 {
-public:
-    Shader(string vertFilePath, string fragFilePath);
-    ~Shader();
+    class Shader
+    {
+    public:
+        Shader(string vertFilePath, string fragFilePath);
+        ~Shader();
 
-    unsigned int shaderProgram;
+        unsigned int shaderProgram;
 
-    void use();
+        void use();
 
-private:
-    string vertShader;
-    string fragShader;
-    unsigned int vertShaderID;
-    unsigned int fragShaderID;
+    private:
+        string vertShader;
+        string fragShader;
+        unsigned int vertShaderID;
+        unsigned int fragShaderID;
 
-    string readShaderFromFile(const char* filePath);
-    void compileShader();
-    void linkShader();
+        string readShaderFromFile(const char* filePath);
+        void compileShader();
+        void linkShader();
 
-};
+    };
+}

@@ -10,6 +10,8 @@
 
 #include "shader.h"
 
+// using namespace Eagle; // shouldnt use this
+
 int main_func()
 {
     
@@ -40,7 +42,7 @@ int main_func()
 	}
 
     // Basics shader
-    Shader sh("shaders/vert.glsl","shaders/frag.glsl");
+    Eagle::Shader sh("../shaders/vert.glsl","../shaders/frag.glsl");
 
 
     // TODO create temp shapes
