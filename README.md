@@ -10,6 +10,15 @@
 
 To clone with the submodules run ```git clone --recursive```
 
+This project is setup using [CMake](https://cmake.org/download/), and the VSCode extension [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools).
+
+The project is split into seperate targets:
+
+- Eagle : Core library for the engine specific code
+- Sandbox : Base project, acts as a game using the engine code
+- Sandbox_Shaders : Specific target to ensure the shader files are copied to the build
+- tester : Tests made for the Core lib (STILL NEEDS TO BE SETUP)
+
 ---
 
 ### Libraries used
