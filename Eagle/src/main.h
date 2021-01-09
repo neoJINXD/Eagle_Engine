@@ -1,3 +1,6 @@
 #pragma once
 
-int main_func();
+namespace Eagle
+{
+    int main_func();
+}

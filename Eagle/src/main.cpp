@@ -8,11 +8,12 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
+#include "main.h"
 #include "shader.h"
 
 // using namespace Eagle; // shouldnt use this
 
-int main_func()
+int Eagle::main_func()
 {
     
     GLFWwindow* window;
