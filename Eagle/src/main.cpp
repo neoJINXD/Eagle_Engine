@@ -8,9 +8,12 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
+#include "main.h"
 #include "shader.h"
 
-int main(void)
+// using namespace Eagle; // shouldnt use this
+
+int Eagle::main_func()
 {
     
     GLFWwindow* window;
@@ -40,7 +43,7 @@ int main(void)
 	}
 
     // Basics shader
-    Shader sh("shaders/vert.glsl","shaders/frag.glsl");
+    Eagle::Shader sh("shaders/vert.glsl","shaders/frag.glsl");
 
 
     // TODO create temp shapes

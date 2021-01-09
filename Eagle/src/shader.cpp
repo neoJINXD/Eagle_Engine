@@ -10,7 +10,7 @@
 
 #include <GL/glew.h>
 
-Shader::Shader(string vertFilePath, string fragFilePath)
+Eagle::Shader::Shader(string vertFilePath, string fragFilePath)
 {
     vertShader = readShaderFromFile(vertFilePath.c_str());
     fragShader = readShaderFromFile(fragFilePath.c_str());
@@ -19,13 +19,13 @@ Shader::Shader(string vertFilePath, string fragFilePath)
     linkShader();
 }
 
-Shader::~Shader()
+Eagle::Shader::~Shader()
 {
     //TODO
 }
 
 
-string Shader::readShaderFromFile(const char* fileName)
+string Eagle::Shader::readShaderFromFile(const char* fileName)
 {
     string content;
     std::ifstream input(fileName, std::ios::in);
@@ -49,7 +49,7 @@ string Shader::readShaderFromFile(const char* fileName)
     return content;
 }
 
-void Shader::compileShader()
+void Eagle::Shader::compileShader()
 {
     int success;
     char infoLog[512];
@@ -84,7 +84,7 @@ void Shader::compileShader()
     }
 }
 
-void Shader::linkShader()
+void Eagle::Shader::linkShader()
 {
     // Linking Shader
     shaderProgram = glCreateProgram();
@@ -109,7 +109,7 @@ void Shader::linkShader()
     glDeleteShader(fragShaderID);
 }
 
-void Shader::use()
+void Eagle::Shader::use()
 {
     glUseProgram(shaderProgram);
 }

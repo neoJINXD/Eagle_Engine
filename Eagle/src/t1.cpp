@@ -2,10 +2,10 @@
 
 #include <iostream>
 
-t1::t1()
-{
+// t1::t1()
+// {
 
-};
+// };
 
 void t1::yer()
 {
