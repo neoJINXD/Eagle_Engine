@@ -42,7 +42,7 @@ int main_func()
 	}
 
     // Basics shader
-    Eagle::Shader sh("../shaders/vert.glsl","../shaders/frag.glsl");
+    Eagle::Shader sh("shaders/vert.glsl","shaders/frag.glsl");
 
 
     // TODO create temp shapes
