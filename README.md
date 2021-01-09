@@ -1,5 +1,7 @@
 # Project Eagle
 
+![Build Status](https://github.com/neojinxd/Eagle_Engine/workflows/Eagle_Ubuntu/badge.svg)
+
 ## Building a game engine from scratch using OpenGL and C++
 
 ---
