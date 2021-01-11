@@ -44,7 +44,7 @@ int Eagle::main_func()
 
     // Basics shader
     Eagle::Shader sh("shaders/vert.glsl","shaders/frag.glsl");
-
+    
 
     // TODO create temp shapes
     float vertices[] = {
@@ -93,6 +93,7 @@ int Eagle::main_func()
         
         // glUseProgram(shaderProgram);
         sh.use();
+        sh.setFloat("rColor", 1.0f);
         // TODO Render Objects/Models
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 3);

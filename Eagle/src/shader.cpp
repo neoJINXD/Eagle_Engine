@@ -114,4 +114,64 @@ void Eagle::Shader::use()
     glUseProgram(shaderProgram);
 }
 
-// TODO add utility methods to pass values into the shader
+// utility methods to pass values into the shader
+
+void Eagle::Shader::setBool(const std::string& name, bool value) const
+{
+    glUniform1i(glGetUniformLocation(shaderProgram, name.c_str()), (int)value);
+}
+
+void Eagle::Shader::setInt(const std::string& name, int value) const
+{
+    glUniform1i(glGetUniformLocation(shaderProgram, name.c_str()), value);
+}
+
+void Eagle::Shader::setFloat(const std::string& name, float value) const
+{
+    glUniform1f(glGetUniformLocation(shaderProgram, name.c_str()), value);
+}
+
+void Eagle::Shader::setVec2(const std::string& name, const glm::vec2& value) const
+{
+    glUniform2fv(glGetUniformLocation(shaderProgram, name.c_str()), 1, &value[0]);
+}
+
+void Eagle::Shader::setVec2(const std::string& name, float x, float y) const
+{
+    glUniform2f(glGetUniformLocation(shaderProgram, name.c_str()), x, y);
+}
+
+void Eagle::Shader::setVec3(const std::string& name, const glm::vec3& value) const
+{
+    glUniform3fv(glGetUniformLocation(shaderProgram, name.c_str()), 1, &value[0]);
+}
+
+void Eagle::Shader::setVec3(const std::string& name, float x, float y, float z) const
+{
+    glUniform3f(glGetUniformLocation(shaderProgram, name.c_str()), x, y, z);
+}
+
+void Eagle::Shader::setVec4(const std::string& name, const glm::vec4& value) const
+{
+    glUniform4fv(glGetUniformLocation(shaderProgram, name.c_str()), 1, &value[0]);
+}
+
+void Eagle::Shader::setVec4(const std::string& name, float x, float y, float z, float w)
+{
+    glUniform4f(glGetUniformLocation(shaderProgram, name.c_str()), x, y, z, w);
+}
+
+void Eagle::Shader::setMat2(const std::string& name, const glm::mat2& mat) const
+{
+    glUniformMatrix2fv(glGetUniformLocation(shaderProgram, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+}
+
+void Eagle::Shader::setMat3(const std::string& name, const glm::mat3& mat) const
+{
+    glUniformMatrix3fv(glGetUniformLocation(shaderProgram, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+}
+
+void Eagle::Shader::setMat4(const std::string& name, const glm::mat4& mat) const
+{
+    glUniformMatrix4fv(glGetUniformLocation(shaderProgram, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+}
