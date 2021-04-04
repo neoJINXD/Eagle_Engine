@@ -1,4 +1,5 @@
 /.vscode
+/.vs
 /[Bb]uild
 
 /build_debug_gcc
