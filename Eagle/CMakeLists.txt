@@ -23,5 +23,10 @@ target_link_libraries(Eagle PRIVATE libglew_static)
 add_subdirectory( ${PROJECT_SOURCE_DIR}/modules/glm modules/glm EXCLUDE_FROM_ALL )
 target_link_libraries(Eagle PRIVATE glm)
 
+
+# Vulkan
+find_package(Vulkan REQUIRED)
+target_link_libraries(Eagle PRIVATE Vulkan::Vulkan)
+
 # target_include_directories(EAGLE_LIB PUBLIC ${EAGLE_SRC_DIR})
 target_include_directories(Eagle PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
