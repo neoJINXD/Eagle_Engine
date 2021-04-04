@@ -1,5 +1,8 @@
-file(GLOB Eagle_CPP "src/*.cpp")
-file(GLOB Eagle_H "src/*.h")
+add_compile_definitions(EAGLE_WINDOWS)
+add_compile_definitions(EAGLE_LIB)
+
+file(GLOB_RECURSE Eagle_CPP "src/*.cpp")
+file(GLOB_RECURSE Eagle_H "src/*.h")
 
 # Eagle Library
 add_library(

@@ -1,5 +1,7 @@
-file(GLOB Sandbox_CPP "src/*.cpp")
-file(GLOB Sandbox_H "src/*.h")
+add_compile_definitions(EAGLE_WINDOWS)
+
+file(GLOB_RECURSE Sandbox_CPP "src/*.cpp")
+file(GLOB_RECURSE Sandbox_H "src/*.h")
 
 # Sandbox EXE
 add_executable(
