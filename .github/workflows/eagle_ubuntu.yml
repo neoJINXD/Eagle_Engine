@@ -28,8 +28,7 @@ jobs:
 
     - name: Install Vulkan
       run: |
-        sudo apt update
-        sudo apt install vulkan-sdk
+        sudo apt-get -y install vulkan-sdk
 
     # - name: Checking OpenGL Version
     #   run: |
