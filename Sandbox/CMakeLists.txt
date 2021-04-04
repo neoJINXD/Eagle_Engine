@@ -15,9 +15,7 @@ add_executable(
 target_link_libraries(Sandbox PRIVATE Eagle)
 
 # Grabbing Shader Files
-add_custom_target(Sandbox_Shaders)
-
-add_custom_command(TARGET Sandbox_Shaders PRE_BUILD
+add_custom_command(TARGET Sandbox PRE_BUILD
                     COMMAND ${CMAKE_COMMAND} -E copy_directory 
                     ${CMAKE_CURRENT_SOURCE_DIR}/src/shaders/ $<TARGET_FILE_DIR:Sandbox>/shaders/)
 
