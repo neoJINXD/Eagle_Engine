@@ -7,19 +7,42 @@ env:
   BUILD_TYPE: Release
 
 jobs:
+  clone:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout reposistory
+      uses: actions/checkout@master
+    - name: Checkout submodules
+      uses: textbook/git-checkout-submodule-action@master
+
+    - name: Upload Source Code
+      uses: actions/upload-artifact@master
+      with:
+        name: src_code
+        path: ./
+        retention-days: 1
+
+
   build:
     # The CMake configure and build commands are platform agnostic and should work equally
     # well on Windows or Mac.  You can convert this to a matrix build if you need
     # cross-platform coverage.
     # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
+    needs: src_code
     runs-on: windows-latest
 
     steps:
     # - uses: actions/checkout@v2
-    - name: Checkout reposistory
-      uses: actions/checkout@master
-    - name: Checkout submodules
-      uses: textbook/git-checkout-submodule-action@master
+    # - name: Checkout reposistory
+      # uses: actions/checkout@master
+    # - name: Checkout submodules
+      # uses: textbook/git-checkout-submodule-action@master
+
+    - name: Download Source Code
+      uses: actions/download-artifact@master
+      with:
+        name: src_code
 
     # - name: Install OpenGL Binaries
     #   run: |
