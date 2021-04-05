@@ -6,7 +6,7 @@ file(GLOB_RECURSE Eagle_H "src/*.h")
 
 # Eagle Library
 add_library(
-    Eagle STATIC
+    Eagle SHARED
     ${Eagle_CPP}
     ${Eagle_H}
     )
@@ -33,3 +33,4 @@ target_link_libraries(Eagle PRIVATE Vulkan::Vulkan)
 
 # target_include_directories(EAGLE_LIB PUBLIC ${EAGLE_SRC_DIR})
 target_include_directories(Eagle PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
+

@@ -1,13 +1,17 @@
 
-#include <t1.h>
-#include <main.h>
+//#include <t1.h>
+//#include <main.h>
+
+#include "Sandbox.h"
+
 
 int main()
 {
-    // t1 t();
-    t1::yer();
-    return Eagle::main_func();
+    //return Eagle::main_func();
 
-    // return 0;
+    Sandbox* app = new Sandbox();
+    app->run();
+    delete app;
 
+    return 0;
 }
