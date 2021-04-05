@@ -1,4 +1,6 @@
-add_compile_definitions(EAGLE_WINDOWS)
+if (WIN32)
+    add_compile_definitions(EAGLE_WINDOWS)
+endif()
 add_compile_definitions(EAGLE_LIB)
 
 file(GLOB_RECURSE Eagle_CPP "src/*.cpp")

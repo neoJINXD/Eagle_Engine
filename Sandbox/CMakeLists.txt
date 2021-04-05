@@ -1,4 +1,6 @@
-add_compile_definitions(EAGLE_WINDOWS)
+if (WIN32)
+    add_compile_definitions(EAGLE_WINDOWS)
+endif()
 
 file(GLOB_RECURSE Sandbox_CPP "src/*.cpp")
 file(GLOB_RECURSE Sandbox_H "src/*.h")
