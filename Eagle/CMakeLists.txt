@@ -20,7 +20,7 @@ target_link_libraries(Eagle PRIVATE glfw)
 # set( GLFW_INSTALL OFF CACHE BOOL  "GLFW lib only" )
 
 # GLEW
-add_definitions(-DGLEW_STATIC)
+# add_definitions(-DGLEW_STATIC)
 add_subdirectory( ${PROJECT_SOURCE_DIR}/modules/glew-cmake modules/glew-cmake EXCLUDE_FROM_ALL)
 target_link_libraries(Eagle PRIVATE libglew_static)
 
