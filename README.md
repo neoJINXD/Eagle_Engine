@@ -1,6 +1,7 @@
 # Project Eagle
 
-![Build Status](https://github.com/neojinxd/Eagle_Engine/workflows/Eagle_Ubuntu/badge.svg)
+![Linux Build](https://github.com/neojinxd/Eagle_Engine/workflows/Eagle_Ubuntu/badge.svg)
+![Windows Build](https://github.com/neojinxd/Eagle_Engine/workflows/Eagle_Windows/badge.svg)
 
 ## Building a game engine from scratch using OpenGL and Vulkan and C++
 
