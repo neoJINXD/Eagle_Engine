@@ -114,7 +114,5 @@ int Eagle::main_func()
 
     glfwTerminate();
 
-    Eagle::Log::cleanup();
-
     return 0;
 }
