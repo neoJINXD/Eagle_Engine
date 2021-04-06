@@ -79,13 +79,13 @@ int Eagle::main_func()
 
     glClearColor(0.11f, 0.44f, 0.68f, 1.0f);
 
-    float lastFrameTime = glfwGetTime();
+    double lastFrameTime = glfwGetTime();
 
     // Loop until the user closes the window 
     while (!glfwWindowShouldClose(window))
     {
         // deltaTime calculation
-        float dt = glfwGetTime() - lastFrameTime;
+        double dt = glfwGetTime() - lastFrameTime;
         lastFrameTime += dt;
 
         // Clears depth and color buffer
