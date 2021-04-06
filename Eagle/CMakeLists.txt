@@ -30,7 +30,7 @@ target_link_libraries(Eagle PRIVATE glm)
 
 # spdlog
 add_subdirectory( ${PROJECT_SOURCE_DIR}/modules/spdlog modules/spdlog EXCLUDE_FROM_ALL)
-target_link_libraries(Eagle PRIVATE spdlog::spdlog_header_only)
+target_link_libraries(Eagle PRIVATE spdlog::spdlog)
 
 
 # Vulkan

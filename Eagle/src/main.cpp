@@ -1,16 +1,16 @@
 #include <iostream>
 
-// #ifndef GLEW_STATIC
-// #define GLEW_STATIC 1
-// #endif
-
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
 #include "main.h"
 #include "shader.h"
+
+EAGLE_DISABLE_WARNING_PUSH
 #include "spdlog/spdlog.h"
+EAGLE_DISABLE_WARNING_POP
+
 
 // using namespace Eagle; // shouldnt use this
 

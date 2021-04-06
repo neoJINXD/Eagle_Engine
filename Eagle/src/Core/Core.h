@@ -9,6 +9,9 @@
 		#define	EAGLE_API __declspec(dllimport)
 	#endif
 
+	#define EAGLE_DISABLE_WARNING_PUSH __pragma(warning( push, 0 ))
+	#define EAGLE_DISABLE_WARNING_POP __pragma(warning( pop ))
+
 #else
 
 	#ifdef EAGLE_LIB
@@ -16,5 +19,8 @@
 	#else
 		#define	EAGLE_API
 	#endif
+
+	#define EAGLE_DISABLE_WARNING_PUSH _Pragma("GCC diagnostic push")
+	#define EAGLE_DISABLE_WARNING_POP _Pragma("GCC diagnostic pop")
 
 #endif
