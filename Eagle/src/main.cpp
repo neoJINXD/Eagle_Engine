@@ -10,12 +10,15 @@
 
 #include "main.h"
 #include "shader.h"
+#include "spdlog/spdlog.h"
 
 // using namespace Eagle; // shouldnt use this
 
 int Eagle::main_func()
 {
-    
+    spdlog::set_pattern("[%H:%M:%S %z] [%n] [%^---%L---%$] [thread %t] %v");
+    spdlog::info("Welcome to the Motherland");
+
     GLFWwindow* window;
 
 

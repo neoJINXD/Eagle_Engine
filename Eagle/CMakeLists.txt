@@ -28,6 +28,10 @@ target_link_libraries(Eagle PUBLIC libglew_static)
 add_subdirectory( ${PROJECT_SOURCE_DIR}/modules/glm modules/glm EXCLUDE_FROM_ALL )
 target_link_libraries(Eagle PRIVATE glm)
 
+# spdlog
+add_subdirectory( ${PROJECT_SOURCE_DIR}/modules/spdlog modules/spdlog EXCLUDE_FROM_ALL)
+target_link_libraries(Eagle PRIVATE spdlog::spdlog_header_only)
+
 
 # Vulkan
 find_package(Vulkan REQUIRED)
