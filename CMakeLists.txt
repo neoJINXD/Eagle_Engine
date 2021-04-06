@@ -27,10 +27,6 @@ add_subdirectory(Sandbox)
 if (MSVC)
     set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT Sandbox)
 endif()
-# # Grabbing Shader Files
-# file(GLOB SHADER_FILES "src/shaders/*.glsl")
-# file(COPY ${SHADER_FILES}
-#     DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/shaders/")
 
 # # Testing Module
 # include(CTest)

@@ -6,18 +6,14 @@
 
 #include "main.h"
 #include "shader.h"
+#include "Core/Log.h"
 
-EAGLE_DISABLE_WARNING_PUSH
-#include "spdlog/spdlog.h"
-EAGLE_DISABLE_WARNING_POP
-
-
-// using namespace Eagle; // shouldnt use this
 
 int Eagle::main_func()
 {
-    spdlog::set_pattern("[%H:%M:%S %z] [%n] [%^---%L---%$] [thread %t] %v");
-    spdlog::info("Welcome to the Motherland");
+    Eagle::Log::init();
+
+    ENGINE_LOG("Welcome to the Motherland");
 
     GLFWwindow* window;
 
@@ -117,6 +113,8 @@ int Eagle::main_func()
     }
 
     glfwTerminate();
+
+    Eagle::Log::cleanup();
 
     return 0;
 }
