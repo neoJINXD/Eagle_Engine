@@ -36,3 +36,7 @@ target_link_libraries(Eagle PRIVATE Vulkan::Vulkan)
 # target_include_directories(EAGLE_LIB PUBLIC ${EAGLE_SRC_DIR})
 target_include_directories(Eagle PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
 
+if(WIN32)
+	file(GLOB_RECURSE EAGLE_SRC RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" "*.cpp" "*.h")
+	source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${EAGLE_SRC})
+endif()

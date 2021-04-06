@@ -37,3 +37,9 @@ else()
                     COMMAND ${CMAKE_COMMAND} -E copy
                     $<TARGET_FILE_DIR:Eagle>/libEagle.so $<TARGET_FILE_DIR:Sandbox>)
 endif()
+
+
+if(WIN32)
+	file(GLOB_RECURSE SANDBOX_SRC RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" "*.cpp" "*.h")
+	source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SANDBOX_SRC})
+endif()
