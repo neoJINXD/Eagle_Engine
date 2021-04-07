@@ -42,3 +42,4 @@ These libraries are setup as submodules within this repo
 - GLEW (OpenGL Extension Wrangler)
 - GLFW
 - GLM (OpenGL Mathematics)
+- spdlog
