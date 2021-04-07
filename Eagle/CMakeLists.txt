@@ -44,3 +44,5 @@ if(WIN32)
 	file(GLOB_RECURSE EAGLE_SRC RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" "*.cpp" "*.h")
 	source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${EAGLE_SRC})
 endif()
+
+target_precompile_headers(Eagle PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src/pch.h")

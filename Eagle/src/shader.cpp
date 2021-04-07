@@ -1,13 +1,5 @@
 #include "shader.h"
 
-#include <iostream>
-#include <fstream>
-#include <sstream>
-
-#ifndef GLEW_STATIC
-#define GLEW_STATIC 1
-#endif
-
 #include <GL/glew.h>
 
 Eagle::Shader::Shader(string vertFilePath, string fragFilePath)
