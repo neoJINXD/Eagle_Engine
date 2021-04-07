@@ -1,6 +1,6 @@
 #pragma once
-
+#include "Core/Core.h"
 namespace Eagle
 {
-    int main_func();
+    int EAGLE_API main_func();
 }

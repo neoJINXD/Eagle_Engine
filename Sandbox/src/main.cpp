@@ -1,17 +1,16 @@
-
-//#include <t1.h>
-//#include <main.h>
-
 #include "Sandbox.h"
-
+#include <Eagle.h>
 
 int main()
 {
-    //return Eagle::main_func();
+    Eagle::main_func();
 
-    Sandbox* app = new Sandbox();
-    app->run();
-    delete app;
+    DEBUG_LOG("From the {}", "Sandbox");
+    PRINT("Now using print {}:{}", 5,7);
 
     return 0;
+
+    //Sandbox* app = new Sandbox();
+    //app->run();
+    //delete app;
 }

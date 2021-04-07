@@ -1,8 +1,4 @@
-#include <iostream>
-
-// #ifndef GLEW_STATIC
-// #define GLEW_STATIC 1
-// #endif
+#include "pch.h"
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -10,12 +6,15 @@
 
 #include "main.h"
 #include "shader.h"
+#include "Core/Log.h"
 
-// using namespace Eagle; // shouldnt use this
 
 int Eagle::main_func()
 {
-    
+    Eagle::Log::init();
+
+    ENGINE_LOG("Welcome to the Motherland");
+
     GLFWwindow* window;
 
 
@@ -79,13 +78,13 @@ int Eagle::main_func()
 
     glClearColor(0.11f, 0.44f, 0.68f, 1.0f);
 
-    float lastFrameTime = glfwGetTime();
+    double lastFrameTime = glfwGetTime();
 
     // Loop until the user closes the window 
     while (!glfwWindowShouldClose(window))
     {
         // deltaTime calculation
-        float dt = glfwGetTime() - lastFrameTime;
+        double dt = glfwGetTime() - lastFrameTime;
         lastFrameTime += dt;
 
         // Clears depth and color buffer
