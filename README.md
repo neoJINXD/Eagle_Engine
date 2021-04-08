@@ -11,6 +11,8 @@
 
 To clone with the submodules run ```git clone --recursive```
 
+Make sure to install the [vulkan-sdk](https://vulkan.lunarg.com/sdk/home#windows) before starting development.
+
 This project is setup using [CMake](https://cmake.org/download/).
 Currently supports Visual Studio and the VSCode extension [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools).
 
