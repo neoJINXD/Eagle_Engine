@@ -3,7 +3,9 @@
 #include "Core/Log.h"
 #include "Core/Application.h"
 
-#ifdef EAGLE_WINDOWS
+//#ifdef EAGLE_WINDOWS
+
+extern Eagle::Application* Eagle::CreateApp();
 
 int main(int argc, char** argv)
 {
@@ -11,9 +13,13 @@ int main(int argc, char** argv)
 
 	ENGINE_LOG("Welcome to the Motherland");
 
-	Eagle::Application::run();
+	auto app = Eagle::CreateApp();
+	app->run();
+	delete app;
+
+	Eagle::Log::shutdown();
 
 	return 0;
 }
 
-#endif
+//#endif

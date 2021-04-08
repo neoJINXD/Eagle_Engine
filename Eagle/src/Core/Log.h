@@ -14,6 +14,7 @@ namespace Eagle
 	{
 	public:
 		static void init();
+		static void shutdown();
 
 		inline static std::shared_ptr<spdlog::logger>& getEngineLog() { return engineLogger; }
 		inline static std::shared_ptr<spdlog::logger>& getApplicationLog() { return appLogger; }

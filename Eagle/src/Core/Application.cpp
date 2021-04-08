@@ -3,10 +3,18 @@
 #include "Core/Log.h"
 #include "Core/Events/ApplicationEvent.h"
 
+//Eagle::Application* Eagle::Application::_instance;
+
+Eagle::Application::Application()
+{
+	
+}
 
 Eagle::Application::~Application()
 {
 }
+
+
 
 void Eagle::Application::run()
 {
@@ -14,9 +22,14 @@ void Eagle::Application::run()
 
 	ENGINE_LOG(ev.toString());
 
+	int x = 0;
+
 	while (true)
 	{
-		DEBUG_LOG("We Runnin");
+		x++;
+		DEBUG_LOG("We Runnin {}", x);
+		onUpdate();
+		//getInstance().onUpdate();
 		//getInstance().onUpdate();
 	}
 }

@@ -13,3 +13,7 @@ void Eagle::Log::init()
 	appLogger = spdlog::stdout_color_mt("APP");
 }
 
+void Eagle::Log::shutdown()
+{
+	//delete engineLogger;
+}

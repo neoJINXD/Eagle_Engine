@@ -15,3 +15,8 @@ public:
 private:
 
 };
+
+Eagle::Application* Eagle::CreateApp()
+{
+    return new Sandbox();
+}

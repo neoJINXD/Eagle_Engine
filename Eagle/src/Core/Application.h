@@ -9,11 +9,19 @@ namespace Eagle
 	class EAGLE_API Application
 	{
 	public:
-		Application() = default;
+		//Application() = default;
+		Application();
 		virtual ~Application();
 
 		virtual void onUpdate() = 0;
 
-		static void run();
+		//static void init();
+		void run();
+
+
+	private:
+		static Application* _instance;
 	};
+
+	Application* CreateApp();
 }
