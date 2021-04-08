@@ -8,18 +8,26 @@ namespace Eagle
 	public:
 		static T& getInstance()
 		{
-			//static T _instance;
+			//static BANGO _instance = {};
 			return *_instance;
 		}
 
 	protected:
 		Singleton()
 		{
+			//_instance = static_cast<T*>(this);
 			_instance = static_cast<T*>(this);
+		}
+
+		~Singleton()
+		{
+			_instance = nullptr;
 		}
 
 	private:
 		static T* _instance;
 	};
 
+	template<typename T>
+	T* Singleton<T>::_instance = nullptr;
 }
