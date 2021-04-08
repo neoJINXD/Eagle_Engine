@@ -1,8 +1,8 @@
 #include "Application.h"
 
-Eagle::Application::Application()
-{
-}
+#include "Core/Log.h"
+#include "Core/Events/ApplicationEvent.h"
+
 
 Eagle::Application::~Application()
 {
@@ -10,5 +10,13 @@ Eagle::Application::~Application()
 
 void Eagle::Application::run()
 {
-	while (true);
+	WindowResizeEvent ev(800, 600);
+
+	ENGINE_LOG(ev.toString());
+
+	while (true)
+	{
+		DEBUG_LOG("We Runnin");
+		//getInstance().onUpdate();
+	}
 }

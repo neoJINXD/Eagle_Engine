@@ -24,13 +24,14 @@ namespace Eagle
 	};
 }
 
-#ifdef EAGLE_LIB
-	#define ENGINE_LOG(...)  Eagle::Log::getEngineLog()->info(__VA_ARGS__)
-	#define ENGINE_WARN(...) Eagle::Log::getEngineLog()->warn(__VA_ARGS__)
-	#define ENGINE_ERR(...)  Eagle::Log::getEngineLog()->error(__VA_ARGS__)
-#endif
 
-#define DEBUG_ERR(...)  Eagle::Log::getApplicationLog()->error(__VA_ARGS__)
+#define ENGINE_LOG(...)  Eagle::Log::getEngineLog()->info(__VA_ARGS__)
+#define ENGINE_WARN(...) Eagle::Log::getEngineLog()->warn(__VA_ARGS__)
+#define ENGINE_ERR(...)  Eagle::Log::getEngineLog()->error(__VA_ARGS__)
+
+
 #define DEBUG_LOG(...)  Eagle::Log::getApplicationLog()->info(__VA_ARGS__)
+#define DEBUG_ERR(...)  Eagle::Log::getApplicationLog()->error(__VA_ARGS__)
 #define DEBUG_WARN(...) Eagle::Log::getApplicationLog()->warn(__VA_ARGS__)
+
 #define PRINT(...) DEBUG_LOG(__VA_ARGS__)

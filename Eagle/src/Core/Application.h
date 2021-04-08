@@ -1,19 +1,19 @@
 #pragma once
 
 #include "Core.h"
-
-//#define EAGLE_API __declspec(dllexport)
+#include "Events/Event.h"
+#include "Utils/Singleton.h"
 
 namespace Eagle
 {
 	class EAGLE_API Application
 	{
 	public:
-		Application();
+		Application() = default;
 		virtual ~Application();
 
-		void run();
-	};
+		virtual void onUpdate() = 0;
 
-	//Application* CreateApplication();
+		static void run();
+	};
 }
