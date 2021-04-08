@@ -20,8 +20,10 @@ namespace Eagle
 		inline static std::shared_ptr<spdlog::logger>& getApplicationLog() { return appLogger; }
 
 	private:
+EAGLE_DISABLE_WARNING_PUSH
 		static std::shared_ptr<spdlog::logger> engineLogger;
 		static std::shared_ptr<spdlog::logger> appLogger;
+EAGLE_DISABLE_WARNING_POP
 	};
 }
 

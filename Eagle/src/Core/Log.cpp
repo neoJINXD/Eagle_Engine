@@ -2,8 +2,8 @@
 
 #include "spdlog/sinks/stdout_color_sinks.h"
 
-EAGLE_API std::shared_ptr<spdlog::logger> Eagle::Log::engineLogger;
-EAGLE_API std::shared_ptr<spdlog::logger> Eagle::Log::appLogger;
+std::shared_ptr<spdlog::logger> Eagle::Log::engineLogger;
+std::shared_ptr<spdlog::logger> Eagle::Log::appLogger;
 
 void Eagle::Log::init()
 {

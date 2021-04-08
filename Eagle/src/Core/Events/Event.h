@@ -39,7 +39,7 @@ namespace Eagle
 
 	};
 
-	inline std::ostream& operator<<(std::ostream& os, const Event& event) { os << event.toString(); }
+	inline std::ostream& operator<<(std::ostream& os, const Event& event) { return os << event.toString(); }
 
 	class EventDispatcher
 	{
@@ -49,7 +49,7 @@ namespace Eagle
 		EventDispatcher(Event& _event) : event(_event) {}
 
 		template<typename T>
-		void dispatch(EventFunc<T> func) 
+		bool dispatch(EventFunc<T> func) 
 		{
 			if (event.getType() == T::getEventType())
 			{
