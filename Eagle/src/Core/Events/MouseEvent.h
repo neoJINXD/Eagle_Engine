@@ -4,12 +4,17 @@
 
 namespace Eagle
 {
-	class EAGLE_API MouseButtonEvent : public Event
+	class EAGLE_API MouseEvent : public Event
+	{
+		virtual int getCategory() const override { return EventCategory::EventMouse | EventCategory::EventInput; }
+	};
+
+	class EAGLE_API MouseButtonEvent : public MouseEvent
 	{
 	public:
 		inline int getButtonID() const { return button; }
 
-		virtual int getCategory() const override { return EventCategory::EventMouse | EventCategory::EventInput; }
+		//virtual int getCategory() const override { return EventCategory::EventMouse | EventCategory::EventInput; }
 
 		std::string toString() const override
 		{
@@ -46,7 +51,7 @@ namespace Eagle
 		virtual const char* getName() const override { return "Event::MouseButtonUp"; }
 	};
 
-	class EAGLE_API MouseMovedEvent : public Event
+	class EAGLE_API MouseMovedEvent : public MouseEvent
 	{
 	public:
 		MouseMovedEvent(float _mouseX, float _mouseY) :
@@ -58,7 +63,7 @@ namespace Eagle
 		inline static EventType getEventType() { return EventType::MouseMoved; }
 
 		virtual EventType getType() const override { return getEventType(); }
-		virtual int getCategory() const override { return EventCategory::EventMouse | EventCategory::EventInput; }
+		//virtual int getCategory() const override { return EventCategory::EventMouse | EventCategory::EventInput; }
 		virtual const char* getName() const override { return "Event::MouseMoved"; }
 
 		std::string toString() const override
@@ -71,7 +76,7 @@ namespace Eagle
 		float mouseX, mouseY;
 	};
 	
-	class EAGLE_API MouseScrollEvent : public Event
+	class EAGLE_API MouseScrollEvent : public MouseEvent
 	{
 	public:
 		MouseScrollEvent(float _deltaX, float _deltaY) :
@@ -83,7 +88,7 @@ namespace Eagle
 		inline static EventType getEventType() { return EventType::MouseScrolled; }
 
 		virtual EventType getType() const override { return getEventType(); }
-		virtual int getCategory() const override { return EventCategory::EventMouse | EventCategory::EventInput; }
+		//virtual int getCategory() const override { return EventCategory::EventMouse | EventCategory::EventInput; }
 		virtual const char* getName() const override { return "Event::MouseScroll"; }
 
 		std::string toString() const override

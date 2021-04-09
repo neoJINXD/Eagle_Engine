@@ -44,7 +44,7 @@ namespace Eagle
 	class EventDispatcher
 	{
 		template<typename T>
-		using EventFunc = std::function<bool(T&)>;
+		using EventFunc = std::function<bool(T&)>; // some function to handle the event
 	public:
 		EventDispatcher(Event& _event) : event(_event) {}
 

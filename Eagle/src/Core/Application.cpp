@@ -22,12 +22,12 @@ void Eagle::Application::run()
 
 	ENGINE_LOG(ev.toString());
 
-	int x = 0;
+	//int x = 0;
 
 	while (true)
 	{
-		x++;
-		DEBUG_LOG("We Runnin {}", x);
+		//x++;
+		//DEBUG_LOG("We Runnin {}", x);
 		onUpdate();
 		//getInstance().onUpdate();
 		//getInstance().onUpdate();

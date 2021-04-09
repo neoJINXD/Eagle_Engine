@@ -9,7 +9,7 @@ public:
 
     void onUpdate() override
     {
-        DEBUG_LOG("We are in the Application");
+        //DEBUG_LOG("We are in the Application");
     }
 
 private:
