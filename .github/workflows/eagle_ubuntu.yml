@@ -3,7 +3,9 @@ name: Eagle_Ubuntu
 on: 
   push:
     branches:
-      - "!main"
+      - "feature/*"
+      - "bugfix/*"
+      - main
   pull_request:
     branches:
       - "main"
