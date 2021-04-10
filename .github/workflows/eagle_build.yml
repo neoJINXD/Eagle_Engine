@@ -96,8 +96,8 @@ jobs:
       - name: Checkout LFS Objects
         run: git lfs checkout
 
-      - name: Install Vulkan SDK
-        run: choco install vulkan-sdk --yes
+      #- name: Install Vulkan SDK
+      #  run: choco install vulkan-sdk --yes
       
         
       - name: Create Build Environment
