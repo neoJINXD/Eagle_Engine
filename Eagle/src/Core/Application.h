@@ -3,6 +3,7 @@
 #include "Core.h"
 #include "Events/Event.h"
 #include "Utils/Singleton.h"
+#include "Core/Window.h"
 
 namespace Eagle
 {
@@ -21,6 +22,9 @@ namespace Eagle
 
 	private:
 		static Application* _instance;
+
+		Window* window;
+		bool isRunning = true;
 	};
 
 	Application* CreateApp();

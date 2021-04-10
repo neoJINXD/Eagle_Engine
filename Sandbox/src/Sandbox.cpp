@@ -3,16 +3,14 @@
 class Sandbox : public Eagle::Application
 {
 public:
-    Sandbox() {}
+    Sandbox() : Application() {}
     
-    ~Sandbox() {}
+    virtual ~Sandbox() {}
 
     void onUpdate() override
     {
-        //DEBUG_LOG("We are in the Application");
+        DEBUG_LOG("We are in the Application");
     }
-
-private:
 
 };
 
