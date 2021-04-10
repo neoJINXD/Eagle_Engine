@@ -90,7 +90,7 @@ jobs:
 
     steps:
       - name: Checkout Repo
-        run: git clone --recursive https://github.com/neoJINXD/Eagle_Engine.git
+        run: git clone --recursive https://github.com/neoJINXD/Eagle_Engine.git .
 
       - name: Install Vulkan SDK
         run: choco install vulkan-sdk
