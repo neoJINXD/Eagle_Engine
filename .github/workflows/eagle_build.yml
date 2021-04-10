@@ -93,7 +93,7 @@ jobs:
         run: git clone --recursive https://github.com/neoJINXD/Eagle_Engine.git .
 
       - name: Install Vulkan SDK
-        run: choco install vulkan-sdk
+        run: choco install vulkan-sdk --yes
       
         
       - name: Create Build Environment
