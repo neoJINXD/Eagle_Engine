@@ -31,10 +31,7 @@ jobs:
     # - uses: actions/checkout@v2
     - name: Checkout reposistory
       uses: actions/checkout@master
-      with:
-        lfs: true
-    - name: Checkout LFS Objects
-      run: git lfs checkout
+      
     - name: Checkout submodules
       uses: textbook/git-checkout-submodule-action@master
 
@@ -95,6 +92,9 @@ jobs:
     steps:
       - name: Checkout Repo
         run: git clone --recursive https://github.com/neoJINXD/Eagle_Engine.git .
+      
+      - name: Checkout LFS Objects
+        run: git lfs checkout
 
       - name: Install Vulkan SDK
         run: choco install vulkan-sdk --yes
