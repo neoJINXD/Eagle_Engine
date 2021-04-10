@@ -90,7 +90,9 @@ jobs:
 
     steps:
       - name: Checkout Repo
-        run: git clone --recursive $GITHUB_SERVER_URL/$GITHUB_REPOSITORY
+        run: |
+          echo "${{GITHUB_SERVER_URL}}/${{$GITHUB_REPOSITORY}}""
+          git clone --recursive $GITHUB_SERVER_URL/$GITHUB_REPOSITORY
 
       - name: Install Vulkan SDK
         run: choco install vulkan-sdk
