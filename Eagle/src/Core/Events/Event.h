@@ -53,7 +53,7 @@ namespace Eagle
 		{
 			if (event.getType() == T::getEventType())
 			{
-				event.handled = func(*(T*)event);
+				event.handled = func(*(T*)&event);
 				return true;
 			}
 

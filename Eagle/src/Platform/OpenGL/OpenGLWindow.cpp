@@ -1,7 +1,8 @@
 
 #include "pch.h"
 #include "OpenGLWindow.h"
-#include "Core/Log.h"
+
+#include "Core/Events/ApplicationEvent.h"
 
 static bool GLFWInitialized = false;
 
@@ -27,13 +28,25 @@ Eagle::OpenGLWindow::OpenGLWindow(const std::string& _title, unsigned int _width
 
 	window = glfwCreateWindow(data.width, data.height, data.title.c_str(), nullptr, nullptr);
 	glfwMakeContextCurrent(window);
+	glfwSetWindowUserPointer(window, &data);
 	
 	setVSync(true);
+
+	glfwSetWindowCloseCallback(window, [](GLFWwindow* window) {
+		WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+		WindowCloseEvent e;
+		data.callback(e);
+	});
+
+	/*glfwSetKeyCallback(window, [](GLFWwindow* win, int keycode, int scancode, int action, int mods) {
+
+	});*/
 }
 
 Eagle::OpenGLWindow::~OpenGLWindow()
 {
 	glfwDestroyWindow(window);
+	glfwTerminate();
 }
 
 void Eagle::OpenGLWindow::update()
