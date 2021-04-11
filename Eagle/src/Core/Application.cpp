@@ -15,6 +15,7 @@ Eagle::Application::Application()
 Eagle::Application::~Application()
 {
 	delete window;
+	glfwTerminate();
 }
 
 
