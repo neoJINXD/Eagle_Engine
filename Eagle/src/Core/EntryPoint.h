@@ -29,7 +29,7 @@ int main(int argc, char** argv)
 
 	ENGINE_LOG("Welcome to the Motherland");
 
-	auto app = Eagle::CreateApp(); // TODO MEMORY LEAKING
+	auto app = Eagle::CreateApp();
 	app->run();
 	delete app;
 

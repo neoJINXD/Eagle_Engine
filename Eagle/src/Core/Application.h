@@ -10,7 +10,6 @@ namespace Eagle
 	class EAGLE_API Application
 	{
 	public:
-		//Application() = default;
 		Application();
 		virtual ~Application();
 

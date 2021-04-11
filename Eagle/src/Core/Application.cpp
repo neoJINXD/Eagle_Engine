@@ -26,7 +26,7 @@ void Eagle::Application::run()
 	{
 		glClearColor(1, 1, 1, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
-		//onUpdate(); // TODO MEMORY LEAKING
+		//onUpdate();
 		window->update();
 	}
 }
