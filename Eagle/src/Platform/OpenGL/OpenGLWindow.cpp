@@ -21,13 +21,7 @@ Eagle::OpenGLWindow::OpenGLWindow(const std::string& _title, unsigned int _width
 	if (!GLFWInitialized)
 	{
 		int succ = glfwInit();
-		
-		if (!succ)
-		{
-			ENGINE_ERR("FAILED TO INIT GLFW!");
-			__debugbreak(); // TODO move this out to only run on windows
-		}
-
+		EAGLE_ASSERT(succ, "FAILED TO INIT GLFW!");
 		GLFWInitialized = true;
 	}
 
