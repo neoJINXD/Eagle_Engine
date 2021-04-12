@@ -26,7 +26,6 @@ namespace Eagle
 
 	class EAGLE_API Event
 	{
-		friend class EventDispatcher;
 	public:
 		virtual const char* getName() const = 0;
 		virtual int getCategory() const = 0;
@@ -34,9 +33,8 @@ namespace Eagle
 
 		virtual std::string toString() const { return getName(); }
 		inline bool isInCategory(EventCategory category) { return getCategory() & category; }
-	private:
+		
 		bool handled = false;
-
 	};
 
 	inline std::ostream& operator<<(std::ostream& os, const Event& event) { return os << event.toString(); }

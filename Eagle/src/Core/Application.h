@@ -4,6 +4,7 @@
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
 #include "Core/Window.h"
+#include "Core/LayerStack.h"
 
 namespace Eagle
 {
@@ -13,16 +14,17 @@ namespace Eagle
 		Application();
 		virtual ~Application();
 
-		virtual void onUpdate() = 0;
-
 		//static void init();
 		void run();
 
 		void onEvent(Event& e);
 
+		void addLayer(Layer* layer);
+		void addOverlay(Layer* layer);
 
 	private:
 		static Application* _instance;
+		LayerStack layerStack;
 
 		Window* window;
 		bool isRunning = true;

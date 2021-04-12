@@ -5,7 +5,8 @@
 #include <GLFW/glfw3.h>
 
 
-Eagle::Application::Application()
+Eagle::Application::Application() :
+	layerStack()
 {
 	window = Window::create();
 	window->setEventCallback(std::bind(&Application::onEvent, this, std::placeholders::_1));
@@ -26,7 +27,8 @@ void Eagle::Application::run()
 	{
 		glClearColor(1, 1, 1, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
-		//onUpdate();
+		for (Layer* layer : layerStack)
+			layer->onUpdate();
 		window->update();
 	}
 }
@@ -35,7 +37,25 @@ void Eagle::Application::onEvent(Event& e)
 {
 	EventDispatcher dispatcher(e);
 	dispatcher.dispatch<WindowCloseEvent>(std::bind(&Application::onClose, this, std::placeholders::_1));
-	ENGINE_LOG("{}", e);
+
+	for (LayerIterator it = layerStack.end(); it != layerStack.begin();)
+	{
+		(*--it)->onEvent(e);
+		if (e.handled)
+			break;
+	}
+
+	//ENGINE_LOG("{}", e);
+}
+
+void Eagle::Application::addLayer(Layer* layer)
+{
+	layerStack.pushLayer(layer);
+}
+
+void Eagle::Application::addOverlay(Layer* layer)
+{
+	layerStack.pushOverlay(layer);
 }
 
 bool Eagle::Application::onClose(WindowCloseEvent& e)
