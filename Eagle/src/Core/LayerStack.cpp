@@ -13,7 +13,7 @@ Eagle::LayerStack::~LayerStack()
 
 void Eagle::LayerStack::pushLayer(Layer* layer)
 {
-	stack.emplace(currentLayer, layer);
+	currentLayer = stack.emplace(currentLayer, layer);
 }
 
 void Eagle::LayerStack::pushOverlay(Layer* layer)
