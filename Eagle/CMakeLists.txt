@@ -35,6 +35,9 @@ target_link_libraries(Eagle PUBLIC spdlog::spdlog)
 
 # Vulkan
 find_package(Vulkan REQUIRED)
+message("Vulkan found? " ${Vulkan_FOUND})
+message("Alright, where is it? " ${Vulkan_LIBRARY})
+message("And I can include it? " ${Vulkan_INCLUDE_DIR})
 target_link_libraries(Eagle PRIVATE Vulkan::Vulkan)
 
 # target_include_directories(EAGLE_LIB PUBLIC ${EAGLE_SRC_DIR})
