@@ -1,6 +1,6 @@
 
 #include "pch.h"
-#include "OpenGLWindow.h"
+#include "VulkanWindow.h"
 
 #include "Core/Events/ApplicationEvent.h"
 #include "Core/Events/KeyboardEvent.h"
@@ -8,18 +8,25 @@
 
 static bool GLFWInitialized = false;
 
-//Eagle::Window* Eagle::Window::create()
-//{
-//	return new OpenGLWindow();
-//}
 
-Eagle::OpenGLWindow::OpenGLWindow(const std::string& _title, unsigned int _width, unsigned int _height)
+Eagle::Window* Eagle::Window::create()
+{
+	return new VulkanWindow();
+}
+
+
+Eagle::VulkanWindow::VulkanWindow(const std::string& _title, unsigned int _width, unsigned int _height)
 {
 	data.title = _title; 
 	data.width = _width; 
 	data.height = _height;
 
-	ENGINE_LOG("OpenGL Window Create with Title: {}, Width: {}, Height: {}", data.title, data.width, data.height);
+	ENGINE_LOG("Vulkan Window Create with Title: {}, Width: {}, Height: {}", data.title, data.width, data.height);
+
+	uint32_t extensionCount = 0;
+	vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
+
+	ENGINE_LOG("Vulkan Initialized with {} extensions", extensionCount);
 
 	if (!GLFWInitialized)
 	{
@@ -27,6 +34,9 @@ Eagle::OpenGLWindow::OpenGLWindow(const std::string& _title, unsigned int _width
 		EAGLE_ASSERT(succ, "FAILED TO INIT GLFW!");
 		GLFWInitialized = true;
 	}
+
+	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+	glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
 	window = glfwCreateWindow(data.width, data.height, data.title.c_str(), nullptr, nullptr);
 	glfwMakeContextCurrent(window);
@@ -128,19 +138,19 @@ Eagle::OpenGLWindow::OpenGLWindow(const std::string& _title, unsigned int _width
 	});
 }
 
-Eagle::OpenGLWindow::~OpenGLWindow()
+Eagle::VulkanWindow::~VulkanWindow()
 {
 	glfwDestroyWindow(window);
 	glfwTerminate();
 }
 
-void Eagle::OpenGLWindow::update()
+void Eagle::VulkanWindow::update()
 {
 	glfwPollEvents();
 	glfwSwapBuffers(window);
 }
 
-void Eagle::OpenGLWindow::setVSync(bool enabled)
+void Eagle::VulkanWindow::setVSync(bool enabled)
 {
 	if (enabled)
 		glfwSwapInterval(1);
@@ -150,7 +160,7 @@ void Eagle::OpenGLWindow::setVSync(bool enabled)
 	data.vSync = enabled;
 }
 
-bool Eagle::OpenGLWindow::getVSync() const
+bool Eagle::VulkanWindow::getVSync() const
 {
 	return data.vSync;
 }
