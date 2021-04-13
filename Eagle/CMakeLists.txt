@@ -40,6 +40,11 @@ message("Alright, where is it? " ${Vulkan_LIBRARY})
 message("And I can include it? " ${Vulkan_INCLUDE_DIR})
 target_link_libraries(Eagle PRIVATE Vulkan::Vulkan)
 
+
+# Dear ImGUI
+add_subdirectory( ${PROJECT_SOURCE_DIR}/modules/imgui modules/imgui)
+target_link_libraries(Eagle PRIVATE imgui)
+
 # target_include_directories(EAGLE_LIB PUBLIC ${EAGLE_SRC_DIR})
 target_include_directories(Eagle PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
 
