@@ -6,12 +6,16 @@
 #include "Core/Events/KeyboardEvent.h"
 #include "Core/Events/MouseEvent.h"
 
+#include <imgui.h>
+#include "Platform/ImGui/imgui_impl_opengl3.h"
+#include "Platform/ImGui/imgui_impl_glfw.h"
+
 static bool GLFWInitialized = false;
 
-//Eagle::Window* Eagle::Window::create()
-//{
-//	return new OpenGLWindow();
-//}
+Eagle::Window* Eagle::Window::create()
+{
+	return new OpenGLWindow();
+}
 
 Eagle::OpenGLWindow::OpenGLWindow(const std::string& _title, unsigned int _width, unsigned int _height)
 {
@@ -33,6 +37,9 @@ Eagle::OpenGLWindow::OpenGLWindow(const std::string& _title, unsigned int _width
 	glfwSetWindowUserPointer(window, &data);
 	
 	setVSync(true);
+
+	int succ = glewInit();
+	EAGLE_ASSERT(succ == GLEW_OK, "Glew failed to initialize!");
 
 	glfwSetWindowCloseCallback(window, [](GLFWwindow* window) {
 		WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
@@ -126,16 +133,43 @@ Eagle::OpenGLWindow::OpenGLWindow(const std::string& _title, unsigned int _width
 		MouseScrollEvent e((float)xDelta, (float)yDelta);
 		data.callback(e);
 	});
+
+	// TODO TO BE REMOVED
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO();
+
+	ImGui::StyleColorsDark();
+
+	ImGui_ImplGlfw_InitForOpenGL(window, true);
+	ImGui_ImplOpenGL3_Init("#version 330");
 }
 
 Eagle::OpenGLWindow::~OpenGLWindow()
 {
 	glfwDestroyWindow(window);
 	glfwTerminate();
+	
+
+	// TODO TO BE REMOVED
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui_ImplGlfw_Shutdown();
+	ImGui::DestroyContext();
 }
 
 void Eagle::OpenGLWindow::update()
 {
+	// TODO TO BE REMOVED
+	ImGui_ImplOpenGL3_NewFrame();
+	ImGui_ImplGlfw_NewFrame();
+	ImGui::NewFrame();
+
+	bool showDemo = true;
+	ImGui::ShowDemoWindow(&showDemo);
+
+	ImGui::Render();
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
 	glfwPollEvents();
 	glfwSwapBuffers(window);
 }

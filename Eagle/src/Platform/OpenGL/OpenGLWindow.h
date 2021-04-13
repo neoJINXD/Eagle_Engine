@@ -2,6 +2,7 @@
 
 #include "Core/Window.h"
 
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
 namespace Eagle
@@ -22,8 +23,7 @@ namespace Eagle
 
 		void setVSync(bool enabled) override;
 		bool getVSync() const override;
-
-
+		
 	private:
 		GLFWwindow* window;
 

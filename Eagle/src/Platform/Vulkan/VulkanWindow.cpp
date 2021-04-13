@@ -9,10 +9,10 @@
 static bool GLFWInitialized = false;
 
 
-Eagle::Window* Eagle::Window::create()
-{
-	return new VulkanWindow();
-}
+//Eagle::Window* Eagle::Window::create()
+//{
+//	return new VulkanWindow();
+//}
 
 
 Eagle::VulkanWindow::VulkanWindow(const std::string& _title, unsigned int _width, unsigned int _height)

@@ -1,5 +1,6 @@
 #include <Eagle.h>
 
+#include "Core/ImGui/ImGuiLayer.h"
 
 class SandboxLayer : public Eagle::Layer
 {
@@ -23,6 +24,7 @@ public:
     Sandbox() : Application() 
     {
         addLayer(new SandboxLayer());
+        addOverlay(new Eagle::ImGuiLayer());
     }
     
     virtual ~Sandbox() {}

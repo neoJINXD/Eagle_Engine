@@ -22,6 +22,9 @@ namespace Eagle
 		void addLayer(Layer* layer);
 		void addOverlay(Layer* layer);
 
+		inline Window& getWindow() { return *window; }
+		static Application* getInstance() { return instance; }
+
 	private:
 		static Application* _instance;
 		LayerStack layerStack;
@@ -29,9 +32,13 @@ namespace Eagle
 		Window* window;
 		bool isRunning = true;
 
+		static Application* instance;
+
 	private:
 		bool onClose(WindowCloseEvent& e);
 	};
+
+
 
 	Application* CreateApp();
 }

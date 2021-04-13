@@ -2,12 +2,17 @@
 #include "Application.h"
 #include "Core/Log.h"
 
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+Eagle::Application* Eagle::Application::instance = nullptr;
 
 Eagle::Application::Application() :
 	layerStack()
 {
+	EAGLE_ASSERT(!instance, "Application should be a singleton!"); // TODO can i move this into a base singleton class?
+
+	instance = this;
 	window = Window::create();
 	window->setEventCallback(std::bind(&Application::onEvent, this, std::placeholders::_1));
 }

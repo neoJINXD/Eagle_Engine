@@ -12,6 +12,8 @@ namespace Eagle
 		Layer(const std::string& _name = "LayerName") : name(_name) {}
 		virtual ~Layer() {}
 
+		virtual void onAttach() {}
+		virtual void onDetach() {}
 		virtual void onUpdate() {}
 		virtual void onEvent(Event& e) {}
 

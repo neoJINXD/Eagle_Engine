@@ -5,6 +5,7 @@
 #include "Core/Core.h"
 #include "Core/Events/Event.h"
 
+
 namespace Eagle
 {
 	class EAGLE_API Window
@@ -23,6 +24,7 @@ namespace Eagle
 
 		virtual void setVSync(bool enabled) = 0;
 		virtual bool getVSync() const = 0;
+
 
 		static Window* create();
 
