@@ -24,14 +24,13 @@ Eagle::Application::~Application()
 
 void Eagle::Application::run()
 {
-	//WindowResizeEvent ev(800, 600);
-
 	ENGINE_LOG("Application is starting up");
 
 	while (isRunning)
 	{
 		glClearColor(1, 1, 1, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
+
 		for (Layer* layer : layerStack)
 			layer->onUpdate();
 		window->update();
@@ -49,8 +48,6 @@ void Eagle::Application::onEvent(Event& e)
 		if (e.handled)
 			break;
 	}
-
-	//ENGINE_LOG("{}", e);
 }
 
 void Eagle::Application::addLayer(Layer* layer)

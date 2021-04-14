@@ -21,37 +21,39 @@ Eagle::ImGuiLayer::~ImGuiLayer()
 
 void Eagle::ImGuiLayer::onAttach()
 {
- //   IMGUI_CHECKVERSION();
-	//ImGui::CreateContext();
-	//ImGuiIO& io = ImGui::GetIO();
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO();
 
-	//ImGui::StyleColorsDark();
+    ImGui::StyleColorsDark();
 
- //   auto app = Application::getInstance();
- //   
- //   //GLFWwindow* window = app->getWindow().getWindow();
- //   ImGui_ImplGlfw_InitForOpenGL(window, true); // TODO get reference to GFLWwindow*
- //   ImGui_ImplOpenGL3_Init("#version 410");
+    Window* win = &Application::getInstance()->getWindow(); // TODO store reference
+    ImGui_ImplGlfw_InitForOpenGL(((OpenGLWindow*)win)->getWindow(), true);
+    ImGui_ImplOpenGL3_Init("#version 330");
 }
 
 void Eagle::ImGuiLayer::onDetach()
 {
-    //ImGui_ImplOpenGL3_Shutdown();
-    //ImGui_ImplGlfw_Shutdown();
-    //ImGui::DestroyContext();
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
+    ImGui::DestroyContext();
 }
 
 void Eagle::ImGuiLayer::onUpdate()
 {
-    //ImGui_ImplOpenGL3_NewFrame();
-    //ImGui_ImplGlfw_NewFrame();
-    //ImGui::NewFrame();
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplGlfw_NewFrame();
+    ImGui::NewFrame();
 
-    //bool showDemo = true;
-    //ImGui::ShowDemoWindow(&showDemo);
+    bool showDemo = true;
+    ImGui::ShowDemoWindow(&showDemo);
 
-    //ImGui::Render();
-    //ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+    glfwPollEvents();
+    Window* win = &Application::getInstance()->getWindow(); // TODO store reference
+    glfwSwapBuffers(((OpenGLWindow*)win)->getWindow());
 }
 
 void Eagle::ImGuiLayer::onEvent(Event& e)

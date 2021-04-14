@@ -133,45 +133,16 @@ Eagle::OpenGLWindow::OpenGLWindow(const std::string& _title, unsigned int _width
 		MouseScrollEvent e((float)xDelta, (float)yDelta);
 		data.callback(e);
 	});
-
-	// TODO TO BE REMOVED
-	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
-	ImGuiIO& io = ImGui::GetIO();
-
-	ImGui::StyleColorsDark();
-
-	ImGui_ImplGlfw_InitForOpenGL(window, true);
-	ImGui_ImplOpenGL3_Init("#version 330");
 }
 
 Eagle::OpenGLWindow::~OpenGLWindow()
 {
 	glfwDestroyWindow(window);
 	glfwTerminate();
-	
-
-	// TODO TO BE REMOVED
-	ImGui_ImplOpenGL3_Shutdown();
-	ImGui_ImplGlfw_Shutdown();
-	ImGui::DestroyContext();
 }
 
 void Eagle::OpenGLWindow::update()
 {
-	// TODO TO BE REMOVED
-	ImGui_ImplOpenGL3_NewFrame();
-	ImGui_ImplGlfw_NewFrame();
-	ImGui::NewFrame();
-
-	bool showDemo = true;
-	ImGui::ShowDemoWindow(&showDemo);
-
-	ImGui::Render();
-	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-	glfwPollEvents();
-	glfwSwapBuffers(window);
 }
 
 void Eagle::OpenGLWindow::setVSync(bool enabled)
