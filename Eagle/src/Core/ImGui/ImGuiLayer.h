@@ -18,7 +18,7 @@ namespace Eagle
 
 	private:
 		float dt;
-
+		//GLFWwindow* win;
 
 	};
 }
