@@ -25,6 +25,7 @@ namespace Eagle
 		virtual void setVSync(bool enabled) = 0;
 		virtual bool getVSync() const = 0;
 
+		virtual void* getWindow() const = 0;
 
 		static Window* create();
 

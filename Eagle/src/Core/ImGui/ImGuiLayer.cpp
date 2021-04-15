@@ -29,7 +29,7 @@ void Eagle::ImGuiLayer::onAttach()
     ImGui::StyleColorsDark();
 
     Window* win = &Application::getInstance()->getWindow(); // TODO store reference
-    ImGui_ImplGlfw_InitForOpenGL(((OpenGLWindow*)win)->getWindow(), true);
+    ImGui_ImplGlfw_InitForOpenGL((GLFWwindow*)win->getWindow(), true);
     ImGui_ImplOpenGL3_Init("#version 430");
 }
 
@@ -77,7 +77,7 @@ void Eagle::ImGuiLayer::onUpdate()
 
     glfwPollEvents();
     Window* win = &Application::getInstance()->getWindow(); // TODO store reference
-    glfwSwapBuffers(((OpenGLWindow*)win)->getWindow());
+    glfwSwapBuffers((GLFWwindow*)win->getWindow());
 }
 
 void Eagle::ImGuiLayer::onEvent(Event& e)

@@ -24,7 +24,7 @@ namespace Eagle
 		void setVSync(bool enabled) override;
 		bool getVSync() const override;
 
-		inline GLFWwindow* getWindow() const { return window; }
+		inline void* getWindow() const override { return window; }
 		
 	private:
 		GLFWwindow* window;
