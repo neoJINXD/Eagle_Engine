@@ -67,5 +67,5 @@ else()
                     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/Sandbox/)
     add_custom_command(TARGET Eagle POST_BUILD
                     COMMAND ${CMAKE_COMMAND} -E copy
-                    $<TARGET_FILE_DIR:Eagle>/libEagle.so $<TARGET_FILE_DIR:Sandbox>)
+                    $<TARGET_FILE_DIR:Eagle>/libEagle.so ${CMAKE_BINARY_DIR}/Sandbox/)
 endif()
