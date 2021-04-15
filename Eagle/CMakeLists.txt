@@ -64,6 +64,8 @@ if(WIN32)
                     $<TARGET_FILE_DIR:Eagle>/Eagle.dll ${CMAKE_BINARY_DIR}/Sandbox/$<CONFIG>/)
 else()
     add_custom_command(TARGET Eagle POST_BUILD
+                    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/Sandbox/)
+    add_custom_command(TARGET Eagle POST_BUILD
                     COMMAND ${CMAKE_COMMAND} -E copy
                     $<TARGET_FILE_DIR:Eagle>/libEagle.so $<TARGET_FILE_DIR:Sandbox>)
 endif()
