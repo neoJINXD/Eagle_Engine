@@ -30,7 +30,7 @@ void Eagle::ImGuiLayer::onAttach()
 
     Window* win = &Application::getInstance()->getWindow(); // TODO store reference
     ImGui_ImplGlfw_InitForOpenGL(((OpenGLWindow*)win)->getWindow(), true);
-    ImGui_ImplOpenGL3_Init("#version 330");
+    ImGui_ImplOpenGL3_Init("#version 430");
 }
 
 void Eagle::ImGuiLayer::onDetach()
