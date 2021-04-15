@@ -9,7 +9,7 @@ public:
     
     void onUpdate() override 
     {
-        PRINT("We in the app boys");
+        //PRINT("We in the app boys");
     }
 
     void onEvent(Eagle::Event& e) override

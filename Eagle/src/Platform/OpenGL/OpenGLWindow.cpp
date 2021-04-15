@@ -80,7 +80,7 @@ Eagle::OpenGLWindow::OpenGLWindow(const std::string& _title, unsigned int _width
 		{
 		case GLFW_PRESS:
 		{
-			KeyDownEvent e(keycode);
+			KeyDownEvent e(keycode, false);
 			data.callback(e);
 			break;
 		}
@@ -92,8 +92,7 @@ Eagle::OpenGLWindow::OpenGLWindow(const std::string& _title, unsigned int _width
 		}
 		case GLFW_REPEAT:
 		{
-			// TODO still need to setup key holding
-			KeyDownEvent e(keycode);
+			KeyDownEvent e(keycode, true);
 			data.callback(e);
 			break;
 		}

@@ -36,7 +36,7 @@ EAGLE_DISABLE_WARNING_POP
 #define ENGINE_CRITICAL(...)  Eagle::Log::getEngineLog()->critical(__VA_ARGS__)
 
 
-#define DEBUG_LOG(...)  Eagle::Log::getApplicationLog()->info(__VA_ARGS__)
+#define DEBUG_LOG(...)  Eagle::Log::getApplicationLog()->trace(__VA_ARGS__)
 #define DEBUG_WARN(...) Eagle::Log::getApplicationLog()->warn(__VA_ARGS__)
 #define DEBUG_ERR(...)  Eagle::Log::getApplicationLog()->error(__VA_ARGS__)
 
