@@ -26,6 +26,8 @@ void Eagle::ImGuiLayer::onAttach()
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
 
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+
     ImGui::StyleColorsDark();
 
     Window* win = &Application::getInstance()->getWindow(); // TODO store reference
