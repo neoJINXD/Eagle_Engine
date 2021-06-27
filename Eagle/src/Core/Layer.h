@@ -10,14 +10,14 @@ namespace Eagle
 	{
 	public:
 		Layer(const std::string& _name = "LayerName") : name(_name) {}
-		virtual ~Layer() {}
+		virtual ~Layer() = default;
 
-		virtual void onAttach() {}
-		virtual void onDetach() {}
-		virtual void onUpdate() {}
-		virtual void onEvent(Event& e) {}
+		virtual auto OnAttach() -> void {}
+		virtual auto OnDetach() -> void {}
+		virtual auto OnUpdate() -> void {}
+		virtual auto OnEvent(Event& e) -> void {}
 
-		inline const std::string getName() const { return name; }
+		[[nodiscard]] inline auto GetName() const -> std::string { return name; }
 	private:
 		EAGLE_DISABLE_WARNING_PUSH
 		std::string name;

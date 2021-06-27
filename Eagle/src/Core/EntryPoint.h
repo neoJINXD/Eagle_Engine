@@ -18,22 +18,22 @@
 
 #endif
 
-extern Eagle::Application* Eagle::CreateApp();
+extern auto Eagle::CreateApp() -> Application*;
 
-int main(int argc, char** argv)
+auto main(int argc, char** argv) -> int
 {
 #ifdef EAGLE_WINDOWS
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 #endif
-	Eagle::Log::init();
+	Eagle::Log::Init();
 
 	ENGINE_LOG("Welcome to the Motherland");
 
 	auto app = Eagle::CreateApp();
-	app->run();
+	app->Run();
 	delete app;
 
-	Eagle::Log::shutdown();
+	Eagle::Log::Shutdown();
 
 	return 0;
 }

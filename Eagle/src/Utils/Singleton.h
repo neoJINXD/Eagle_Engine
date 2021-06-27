@@ -1,5 +1,7 @@
 #pragma once
 
+// TODO still doesnt work for now
+#if 0
 namespace Eagle
 {
 	template<typename T>
@@ -31,3 +33,4 @@ namespace Eagle
 	template<typename T>
 	T* Singleton<T>::_instance = nullptr;
 }
+#endif

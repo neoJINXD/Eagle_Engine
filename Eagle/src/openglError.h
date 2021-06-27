@@ -1,6 +1,6 @@
 //For error checking for error checking
 #include "pch.h"
-
+#if 0
 #ifndef GLEW_STATIC
 #define GLEW_STATIC 1
 #endif
@@ -25,3 +25,4 @@ static bool glError(const char* funct, const char* file, int line) {
 	}
 	return true;
 }
+#endif

@@ -27,38 +27,39 @@ namespace Eagle
 	class EAGLE_API Event
 	{
 	public:
-		virtual const char* getName() const = 0;
-		virtual int getCategory() const = 0;
-		virtual EventType getType() const = 0;
+		virtual ~Event() = default;
+		[[nodiscard]] virtual const char* GetName() const = 0;
+		[[nodiscard]] virtual int GetCategory() const = 0;
+		[[nodiscard]] virtual EventType GetType() const = 0;
 
-		virtual std::string toString() const { return getName(); }
-		inline bool isInCategory(EventCategory category) { return getCategory() & category; }
+		[[nodiscard]] virtual std::string ToString() const { return GetName(); }
+		[[nodiscard]] inline bool IsInCategory(const EventCategory category) const { return GetCategory() & category; }
 		
 		bool handled = false;
 	};
 
-	inline std::ostream& operator<<(std::ostream& os, const Event& event) { return os << event.toString(); }
+	inline std::ostream& operator<<(std::ostream& os, const Event& event) { return os << event.ToString(); }
 
 	class EventDispatcher
 	{
 		template<typename T>
 		using EventFunc = std::function<bool(T&)>; // some function to handle the event
 	public:
-		EventDispatcher(Event& _event) : event(_event) {}
+		explicit EventDispatcher(Event& event) : m_Event(event) {}
 
 		template<typename T>
-		bool dispatch(EventFunc<T> func) 
+		bool Dispatch(EventFunc<T> func) 
 		{
-			if (event.getType() == T::getEventType())
+			if (m_Event.GetType() == T::GetEventType())
 			{
-				event.handled = func(*(T*)&event);
+				m_Event.handled = func(*reinterpret_cast<T*>(&m_Event));
 				return true;
 			}
 
 			return false;
 		}
 	private:
-		Event& event;
+		Event& m_Event;
 	};
 
 

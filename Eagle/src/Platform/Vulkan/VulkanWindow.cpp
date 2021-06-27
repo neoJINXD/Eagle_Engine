@@ -6,13 +6,13 @@
 #include "Core/Events/KeyboardEvent.h"
 #include "Core/Events/MouseEvent.h"
 
-static bool GLFWInitialized = false;
+static bool g_GLFWInitialized = false;
 
 
-//Eagle::Window* Eagle::Window::create()
-//{
-//	return new VulkanWindow();
-//}
+auto Eagle::Window::Create() -> Window*
+{
+	return new VulkanWindow();
+}
 
 
 Eagle::VulkanWindow::VulkanWindow(const std::string& _title, unsigned int _width, unsigned int _height)
@@ -28,11 +28,11 @@ Eagle::VulkanWindow::VulkanWindow(const std::string& _title, unsigned int _width
 
 	ENGINE_LOG("Vulkan Initialized with {} extensions", extensionCount);
 
-	if (!GLFWInitialized)
+	if (!g_GLFWInitialized)
 	{
 		int succ = glfwInit();
 		EAGLE_ASSERT(succ, "FAILED TO INIT GLFW!");
-		GLFWInitialized = true;
+		g_GLFWInitialized = true;
 	}
 
 	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
@@ -42,7 +42,7 @@ Eagle::VulkanWindow::VulkanWindow(const std::string& _title, unsigned int _width
 	glfwMakeContextCurrent(window);
 	glfwSetWindowUserPointer(window, &data);
 	
-	setVSync(true);
+	SetVSync(true);
 
 	glfwSetWindowCloseCallback(window, [](GLFWwindow* window) {
 		WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
@@ -143,13 +143,13 @@ Eagle::VulkanWindow::~VulkanWindow()
 	glfwTerminate();
 }
 
-void Eagle::VulkanWindow::update()
+auto Eagle::VulkanWindow::Update() -> void
 {
 	glfwPollEvents();
 	glfwSwapBuffers(window);
 }
 
-void Eagle::VulkanWindow::setVSync(bool enabled)
+auto Eagle::VulkanWindow::SetVSync(bool enabled) -> void
 {
 	if (enabled)
 		glfwSwapInterval(1);
@@ -159,7 +159,7 @@ void Eagle::VulkanWindow::setVSync(bool enabled)
 	data.vSync = enabled;
 }
 
-bool Eagle::VulkanWindow::getVSync() const
+auto Eagle::VulkanWindow::GetVSync() const -> bool
 {
 	return data.vSync;
 }

@@ -1,5 +1,7 @@
 #pragma once
+// TODO still needs to be refactored
 
+#if 0
 #include "Core/Window.h"
 
 #include <GL/glew.h>
@@ -13,18 +15,18 @@ namespace Eagle
 		OpenGLWindow(const std::string& _title = "OpenGL Window", unsigned int _width = 1280, unsigned int _height = 720);
 		virtual ~OpenGLWindow();
 
-		void update() override;
+		void Update() override;
 
-		inline unsigned int getWidth() const override { return data.width; }
-		inline unsigned int getHeight() const override { return data.height; }
+		inline unsigned int GetWidth() const override { return data.width; }
+		inline unsigned int GetHeight() const override { return data.height; }
 
-		inline void setEventCallback(const EventCallback& _callback) override { data.callback = _callback; }
+		inline void SetEventCallback(const EventCallback& _callback) override { data.callback = _callback; }
 
 
-		void setVSync(bool enabled) override;
-		bool getVSync() const override;
+		void SetVSync(bool enabled) override;
+		bool GetVSync() const override;
 
-		inline void* getWindow() const override { return window; }
+		inline void* GetWindow() const override { return window; }
 		
 	private:
 		GLFWwindow* window;
@@ -42,3 +44,5 @@ namespace Eagle
 	};
 
 }
+
+#endif

@@ -15,15 +15,15 @@ namespace Eagle
 		virtual ~Application();
 
 		//static void init();
-		void run();
+		auto Run() -> void;
 
-		void onEvent(Event& e);
+		auto OnEvent(Event& e) -> void;
 
-		void addLayer(Layer* layer);
-		void addOverlay(Layer* layer);
+		auto AddLayer(Layer* layer) -> void;
+		auto AddOverlay(Layer* layer) -> void;
 
-		inline Window& getWindow() { return *window; }
-		static Application* getInstance() { return instance; }
+		[[nodiscard]] inline auto GetWindow() const -> Window& { return *window; }
+		[[nodiscard]] static auto GetInstance() -> Application* { return instance; }
 
 	private:
 		static Application* _instance;
@@ -35,7 +35,7 @@ namespace Eagle
 		static Application* instance;
 
 	private:
-		bool onClose(WindowCloseEvent& e);
+		auto OnClose(WindowCloseEvent& e) -> bool;
 	};
 
 
