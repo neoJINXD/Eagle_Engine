@@ -1,5 +1,5 @@
 #pragma once
-#if 0
+
 #include "pch.h"
 
 #include <glm/glm.hpp>
@@ -42,4 +42,3 @@ namespace Eagle
 
     };
 }
-#endif

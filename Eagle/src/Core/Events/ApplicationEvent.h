@@ -4,63 +4,63 @@
 
 namespace Eagle
 {
-	class EAGLE_API WindowCloseEvent final : public Event
+	class EAGLE_API WindowCloseEvent : public Event
 	{
 	public:
-		WindowCloseEvent() = default;
+		WindowCloseEvent() {}
 
-		inline static auto GetEventType() -> EventType { return EventType::WindowClose; }
-
-		[[nodiscard]] virtual auto GetType() const -> EventType override { return GetEventType(); }
-		[[nodiscard]] virtual auto GetCategory() const -> int override { return EventCategory::EventApplication; }
-		[[nodiscard]] virtual auto GetName() const -> const char* override { return "Event::WindowClose"; }
+		inline static EventType getEventType() { return EventType::WindowClose; }
+		
+		virtual EventType getType() const override { return getEventType(); }
+		virtual int getCategory() const override { return EventCategory::EventApplication; }
+		virtual const char* getName() const override { return "Event::WindowClose"; }
 	};
 
-	class EAGLE_API WindowResizeEvent final : public Event
+	class EAGLE_API WindowResizeEvent : public Event
 	{
 	public:
-		WindowResizeEvent(const unsigned int width, const unsigned int height) :
-			m_Width(width), m_Height(height) {}
+		WindowResizeEvent(unsigned int _width, unsigned int _height) :
+			width(_width), height(_height) {}
 
-		inline static auto GetEventType() -> EventType { return EventType::WindowResize; }
+		inline static EventType getEventType() { return EventType::WindowResize; }
 
-		[[nodiscard]] virtual auto GetType() const -> EventType override { return GetEventType(); }
-		[[nodiscard]] virtual auto GetCategory() const -> int override { return EventCategory::EventApplication; }
-		[[nodiscard]] virtual auto GetName() const -> const char* override { return "Event::WindowResize"; }
+		virtual EventType getType() const override { return getEventType(); }
+		virtual int getCategory() const override { return EventCategory::EventApplication; }
+		virtual const char* getName() const override { return "Event::WindowResize"; }
 
-		[[nodiscard]] auto ToString() const -> std::string override
+		std::string toString() const override 
 		{ 
 			std::stringstream ss;
-			ss << GetName() << " - " << m_Width << "x" << m_Height;
+			ss << getName() << " - " << width << "x" << height;
 			return ss.str(); 
 		}
 
 	private:
-		unsigned int m_Width, m_Height;
+		unsigned int width, height;
 	};
 
-	class EAGLE_API WindowFocusEvent final : public Event
+	class EAGLE_API WindowFocusEvent : public Event
 	{
 	public:
-		WindowFocusEvent() = default;
+		WindowFocusEvent() {}
 
-		inline static auto GetEventType() -> EventType { return EventType::WindowFocus; }
+		inline static EventType getEventType() { return EventType::WindowFocus; }
 
-		[[nodiscard]] virtual auto GetType() const -> EventType override { return GetEventType(); }
-		[[nodiscard]] virtual auto GetCategory() const -> int override { return EventCategory::EventApplication; }
-		[[nodiscard]] virtual auto GetName() const -> const char* override { return "Event::WindowFocus"; }
+		virtual EventType getType() const override { return getEventType(); }
+		virtual int getCategory() const override { return EventCategory::EventApplication; }
+		virtual const char* getName() const override { return "Event::WindowFocus"; }
 	};
 
 
-	class EAGLE_API WindowUnfocusEvent final : public Event
+	class EAGLE_API WindowUnfocusEvent : public Event
 	{
 	public:
-		WindowUnfocusEvent() = default;
+		WindowUnfocusEvent() {}
 
-		inline static auto GetEventType() -> EventType { return EventType::WindowUnfocus; }
+		inline static EventType getEventType() { return EventType::WindowUnfocus; }
 
-		[[nodiscard]] virtual auto GetType() const -> EventType override { return GetEventType(); }
-		[[nodiscard]] virtual auto GetCategory() const -> int override { return EventCategory::EventApplication; }
-		[[nodiscard]] virtual auto GetName() const -> const char* override { return "Event::WindowUnfocus"; }
+		virtual EventType getType() const override { return getEventType(); }
+		virtual int getCategory() const override { return EventCategory::EventApplication; }
+		virtual const char* getName() const override { return "Event::WindowUnfocus"; }
 	};
 }

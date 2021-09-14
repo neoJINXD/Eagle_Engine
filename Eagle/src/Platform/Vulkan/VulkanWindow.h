@@ -7,29 +7,29 @@
 
 namespace Eagle
 {
-	class VulkanWindow final : public Window
+	class VulkanWindow : public Window
 	{
 	public:
-		explicit VulkanWindow(const std::string& _title = "Vulkan Window", unsigned int _width = 1280, unsigned int _height = 720);
+		VulkanWindow(const std::string& _title = "Vulkan Window", unsigned int _width = 1280, unsigned int _height = 720);
 		virtual ~VulkanWindow();
 
-		auto Update() -> void override;
+		void update() override;
 
-		[[nodiscard]] auto GetWidth() const -> unsigned int override { return data.width; }
-		[[nodiscard]] auto GetHeight() const -> unsigned int override { return data.height; }
+		inline unsigned int getWidth() const override { return data.width; }
+		inline unsigned int getHeight() const override { return data.height; }
 
-		auto SetEventCallback(const EventCallback& _callback) -> void override { data.callback = _callback; }
+		inline void setEventCallback(const EventCallback& _callback) override { data.callback = _callback; }
 
 
-		auto SetVSync(bool enabled) -> void override;
-		[[nodiscard]] auto GetVSync() const -> bool override;
+		void setVSync(bool enabled) override;
+		bool getVSync() const override;
 
-		[[nodiscard]] auto GetWindow() const -> void* override { return window; }
+		inline void* getWindow() const override { return window; }
 
 	private:
 		GLFWwindow* window;
 
-		struct WindowData final
+		struct WindowData
 		{
 			std::string title;
 			unsigned int width, height;

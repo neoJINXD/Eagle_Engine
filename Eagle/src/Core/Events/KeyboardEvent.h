@@ -8,54 +8,54 @@ namespace Eagle
 	class EAGLE_API KeyEvent : public Event
 	{
 	public:
-		[[nodiscard]] inline auto GetKeyCode() const -> int { return m_KeyCode; }
+		inline int getKeyCode() const { return keyCode; }
 
-		[[nodiscard]] virtual auto GetCategory() const -> int override { return EventCategory::EventKeyboard | EventCategory::EventInput; }
+		virtual int getCategory() const override { return EventCategory::EventKeyboard | EventCategory::EventInput; }
 
-		[[nodiscard]] auto ToString() const -> std::string override
+		std::string toString() const override
 		{
 			std::stringstream ss;
-			ss << GetName() << " - Code: " << m_KeyCode;
+			ss << getName() << " - Code: " << keyCode;
 			return ss.str();
 		}
 
 	protected:
-		explicit KeyEvent(const int keyCode) : m_KeyCode(keyCode) {}
+		KeyEvent(int _keyCode) : keyCode(_keyCode) {}
 
-		int m_KeyCode;
+		int keyCode;
 	};
 
 	// TODO should handle key holding?
-	class EAGLE_API KeyDownEvent final : public KeyEvent
+	class EAGLE_API KeyDownEvent : public KeyEvent
 	{
 	public:
-		explicit KeyDownEvent(const int keyCode,const bool repeated) : KeyEvent(keyCode), m_Repeated(repeated) {}
+		KeyDownEvent(int _keyCode, bool _repeated) : KeyEvent(_keyCode), repeated(_repeated) {}
 
-		inline static auto GetEventType() -> EventType { return EventType::KeyDown; }
+		inline static EventType getEventType() { return EventType::KeyDown; }
 
-		[[nodiscard]] virtual auto GetType() const -> EventType override { return GetEventType(); }
-		[[nodiscard]] virtual auto GetName() const -> const char* override { return "Event::KeyDown"; }
+		virtual EventType getType() const override { return getEventType(); }
+		virtual const char* getName() const override { return "Event::KeyDown"; }
 
-		[[nodiscard]] auto ToString() const -> std::string override
+		std::string toString() const override
 		{
 			std::stringstream ss;
-			ss << GetName() << " - Code: " << m_KeyCode << ", isRepeated: " << m_Repeated;
+			ss << getName() << " - Code: " << keyCode << ", isRepeated: " << repeated;
 			return ss.str();
 		}
 
 	private:
-		bool m_Repeated;
+		bool repeated;
 	};
 	
-	class EAGLE_API KeyUpEvent final : public KeyEvent
+	class EAGLE_API KeyUpEvent : public KeyEvent
 	{
 	public:
-		explicit KeyUpEvent(const int keyCode) : KeyEvent(keyCode) {}
+		KeyUpEvent(int _keyCode) : KeyEvent(_keyCode) {}
 
-		inline static auto GetEventType() -> EventType { return EventType::KeyUp; }
+		inline static EventType getEventType() { return EventType::KeyUp; }
 
-		[[nodiscard]] virtual auto GetType() const -> EventType override { return GetEventType(); }
-		[[nodiscard]] virtual auto GetName() const -> const char* override { return "Event::KeyUp"; }
+		virtual EventType getType() const override { return getEventType(); }
+		virtual const char* getName() const override { return "Event::KeyUp"; }
 
 	};
 

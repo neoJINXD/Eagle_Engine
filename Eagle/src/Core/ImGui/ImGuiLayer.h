@@ -1,6 +1,5 @@
 #pragma once
-// TODO needs to be implemented to work with vulkan
-#if 0
+
 #include "Core/Layer.h"
 
 namespace Eagle
@@ -12,10 +11,10 @@ namespace Eagle
 		ImGuiLayer();
 		~ImGuiLayer();
 
-		void OnAttach() override;
-		void OnDetach() override;
-		void OnUpdate() override;
-		void OnEvent(Event& e) override;
+		void onAttach() override;
+		void onDetach() override;
+		void onUpdate() override;
+		void onEvent(Event& e) override;
 
 	private:
 		float dt;
@@ -24,4 +23,4 @@ namespace Eagle
 	};
 }
 
-#endif
+

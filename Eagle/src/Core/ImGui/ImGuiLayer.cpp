@@ -1,7 +1,3 @@
-// TODO needs to be implemented to work with vulkan
-
-#if 0
-
 #include "pch.h"
 #include "ImGuiLayer.h"
 
@@ -21,10 +17,10 @@ Eagle::ImGuiLayer::ImGuiLayer() : Layer("ImGui Layer")
 
 Eagle::ImGuiLayer::~ImGuiLayer()
 {
-    OnDetach();
+    onDetach();
 }
 
-void Eagle::ImGuiLayer::OnAttach()
+void Eagle::ImGuiLayer::onAttach()
 {
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -34,19 +30,19 @@ void Eagle::ImGuiLayer::OnAttach()
 
     ImGui::StyleColorsDark();
 
-    Window* win = &Application::GetInstance()->GetWindow(); // TODO store reference
-    ImGui_ImplGlfw_InitForOpenGL((GLFWwindow*)win->GetWindow(), true);
+    Window* win = &Application::getInstance()->getWindow(); // TODO store reference
+    ImGui_ImplGlfw_InitForOpenGL((GLFWwindow*)win->getWindow(), true);
     ImGui_ImplOpenGL3_Init("#version 430");
 }
 
-void Eagle::ImGuiLayer::OnDetach()
+void Eagle::ImGuiLayer::onDetach()
 {
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
 }
 
-void Eagle::ImGuiLayer::OnUpdate()
+void Eagle::ImGuiLayer::onUpdate()
 {
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
@@ -82,12 +78,10 @@ void Eagle::ImGuiLayer::OnUpdate()
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
     glfwPollEvents();
-    Window* win = &Application::GetInstance()->GetWindow(); // TODO store reference
-    glfwSwapBuffers((GLFWwindow*)win->GetWindow());
+    Window* win = &Application::getInstance()->getWindow(); // TODO store reference
+    glfwSwapBuffers((GLFWwindow*)win->getWindow());
 }
 
-void Eagle::ImGuiLayer::OnEvent(Event& e)
+void Eagle::ImGuiLayer::onEvent(Event& e)
 {
 }
-
-#endif

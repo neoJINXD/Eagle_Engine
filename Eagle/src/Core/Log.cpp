@@ -5,7 +5,7 @@
 std::shared_ptr<spdlog::logger> Eagle::Log::engineLogger;
 std::shared_ptr<spdlog::logger> Eagle::Log::appLogger;
 
-auto Eagle::Log::Init() -> void
+void Eagle::Log::init()
 {
 	spdlog::set_pattern("%^[%T][%n]: %v%$");
 
@@ -15,7 +15,7 @@ auto Eagle::Log::Init() -> void
 	appLogger->set_level(spdlog::level::trace);
 }
 
-auto Eagle::Log::Shutdown() -> void
+void Eagle::Log::shutdown()
 {
 	//delete engineLogger;
 }

@@ -11,15 +11,15 @@ Eagle::LayerStack::~LayerStack()
 		delete layer;
 }
 
-auto Eagle::LayerStack::PushLayer(Layer* layer) -> void
+void Eagle::LayerStack::pushLayer(Layer* layer)
 {
 	currentLayer = stack.emplace(currentLayer, layer);
-	layer->OnAttach();
+	layer->onAttach();
 }
 
-auto Eagle::LayerStack::PushOverlay(Layer* layer) -> void
+void Eagle::LayerStack::pushOverlay(Layer* layer)
 {
 	stack.emplace_back(layer);
-	layer->OnAttach();
+	layer->onAttach();
 }
 

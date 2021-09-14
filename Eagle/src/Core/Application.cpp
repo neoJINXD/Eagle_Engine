@@ -13,8 +13,8 @@ Eagle::Application::Application() :
 	EAGLE_ASSERT(!instance, "Application should be a singleton!"); // TODO can i move this into a base singleton class?
 
 	instance = this;
-	window = Window::Create();
-	window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
+	window = Window::create();
+	window->setEventCallback(std::bind(&Application::onEvent, this, std::placeholders::_1));
 }
 
 Eagle::Application::~Application()
@@ -22,7 +22,7 @@ Eagle::Application::~Application()
 	delete window;
 }
 
-auto Eagle::Application::Run() -> void
+void Eagle::Application::run()
 {
 	ENGINE_LOG("Application is starting up");
 
@@ -32,35 +32,35 @@ auto Eagle::Application::Run() -> void
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		for (Layer* layer : layerStack)
-			layer->OnUpdate();
-		window->Update();
+			layer->onUpdate();
+		window->update();
 	}
 }
 
-auto Eagle::Application::OnEvent(Event& e) -> void
+void Eagle::Application::onEvent(Event& e)
 {
 	EventDispatcher dispatcher(e);
-	dispatcher.Dispatch<WindowCloseEvent>(std::bind(&Application::OnClose, this, std::placeholders::_1));
+	dispatcher.dispatch<WindowCloseEvent>(std::bind(&Application::onClose, this, std::placeholders::_1));
 
-	for (auto it = layerStack.end(); it != layerStack.begin();)
+	for (LayerIterator it = layerStack.end(); it != layerStack.begin();)
 	{
-		(*--it)->OnEvent(e);
+		(*--it)->onEvent(e);
 		if (e.handled)
 			break;
 	}
 }
 
-auto Eagle::Application::AddLayer(Layer* layer) -> void
+void Eagle::Application::addLayer(Layer* layer)
 {
-	layerStack.PushLayer(layer);
+	layerStack.pushLayer(layer);
 }
 
-auto Eagle::Application::AddOverlay(Layer* layer) -> void
+void Eagle::Application::addOverlay(Layer* layer)
 {
-	layerStack.PushOverlay(layer);
+	layerStack.pushOverlay(layer);
 }
 
-auto Eagle::Application::OnClose(WindowCloseEvent& e) -> bool
+bool Eagle::Application::onClose(WindowCloseEvent& e)
 {
 	isRunning = false;
 	return true;

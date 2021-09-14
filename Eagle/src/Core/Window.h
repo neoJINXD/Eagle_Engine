@@ -15,19 +15,19 @@ namespace Eagle
 
 		virtual ~Window() = default;
 
-		virtual auto Update() -> void = 0;
+		virtual void update() = 0;
 
-		[[nodiscard]] virtual auto GetWidth() const -> unsigned int = 0;
-		[[nodiscard]] virtual auto GetHeight() const -> unsigned int = 0;
+		virtual unsigned int getWidth() const = 0;
+		virtual unsigned int getHeight() const = 0;
 
-		virtual auto SetEventCallback(const EventCallback& callback) -> void = 0;
+		virtual void setEventCallback(const EventCallback& _callback) = 0;
 
-		virtual auto SetVSync(bool enabled) -> void = 0;
-		[[nodiscard]] virtual auto GetVSync() const -> bool = 0;
+		virtual void setVSync(bool enabled) = 0;
+		virtual bool getVSync() const = 0;
 
-		[[nodiscard]] virtual auto GetWindow() const -> void* = 0;
+		virtual void* getWindow() const = 0;
 
-		static auto Create() -> Window*;
+		static Window* create();
 
 	};
 }

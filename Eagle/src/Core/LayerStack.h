@@ -11,17 +11,17 @@ namespace Eagle
 	typedef std::vector<Layer*> LayerVector;
 	typedef std::vector<Layer*>::iterator LayerIterator;
 
-	class EAGLE_API LayerStack final
+	class EAGLE_API LayerStack
 	{
 	public:
 		LayerStack();
 		~LayerStack();
 
-		auto PushLayer(Layer* layer) -> void;
-		auto PushOverlay(Layer* layer) -> void;
+		void pushLayer(Layer* layer);
+		void pushOverlay(Layer* layer);
 
-		auto begin() -> LayerIterator { return stack.begin(); }
-		auto end() -> LayerIterator { return stack.end(); }
+		LayerIterator begin() { return stack.begin(); }
+		LayerIterator end() { return stack.end(); }
 
 	private:
 		EAGLE_DISABLE_WARNING_PUSH

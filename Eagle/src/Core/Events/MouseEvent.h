@@ -6,99 +6,99 @@ namespace Eagle
 {
 	class EAGLE_API MouseEvent : public Event
 	{
-		[[nodiscard]] virtual auto GetCategory() const -> int override { return EventCategory::EventMouse | EventCategory::EventInput; }
+		virtual int getCategory() const override { return EventCategory::EventMouse | EventCategory::EventInput; }
 	};
 
 	class EAGLE_API MouseButtonEvent : public MouseEvent
 	{
 	public:
-		[[nodiscard]] inline auto GetButtonId() const -> int { return m_Button; }
+		inline int getButtonID() const { return button; }
 
 		//virtual int getCategory() const override { return EventCategory::EventMouse | EventCategory::EventInput; }
 
-		[[nodiscard]] auto ToString() const -> std::string override
+		std::string toString() const override
 		{
 			std::stringstream ss;
-			ss << GetName() << " - ButtonID: " << m_Button;
+			ss << getName() << " - ButtonID: " << button;
 			return ss.str();
 		}
 
 	protected:
-		explicit MouseButtonEvent(const int buttonId) : m_Button(buttonId) {}
+		MouseButtonEvent(int buttonID) : button(buttonID) {}
 
-		int m_Button;
+		int button;
 	};
 
-	class EAGLE_API MouseButtonDownEvent final : public MouseButtonEvent
+	class EAGLE_API MouseButtonDownEvent : public MouseButtonEvent
 	{
 	public:
-		explicit MouseButtonDownEvent(const int buttonId) : MouseButtonEvent(buttonId) {}
+		MouseButtonDownEvent(int buttonID) : MouseButtonEvent(buttonID) {}
 
-		inline static auto GetEventType() -> EventType { return EventType::MouseButtonDown; }
+		inline static EventType getEventType() { return EventType::MouseButtonDown; }
 
-		[[nodiscard]] virtual auto GetType() const -> EventType override { return GetEventType(); }
-		[[nodiscard]] virtual auto GetName() const -> const char* override { return "Event::MouseButtonDown"; }
+		virtual EventType getType() const override { return getEventType(); }
+		virtual const char* getName() const override { return "Event::MouseButtonDown"; }
 	};
 	
-	class EAGLE_API MouseButtonUpEvent final : public MouseButtonEvent
+	class EAGLE_API MouseButtonUpEvent : public MouseButtonEvent
 	{
 	public:
-		explicit MouseButtonUpEvent(const int buttonId) : MouseButtonEvent(buttonId) {}
+		MouseButtonUpEvent(int buttonID) : MouseButtonEvent(buttonID) {}
 
-		inline static EventType GetEventType() { return EventType::MouseButtonUp; }
+		inline static EventType getEventType() { return EventType::MouseButtonUp; }
 
-		[[nodiscard]] virtual auto GetType() const -> EventType override { return GetEventType(); }
-		[[nodiscard]] virtual auto GetName() const -> const char* override { return "Event::MouseButtonUp"; }
+		virtual EventType getType() const override { return getEventType(); }
+		virtual const char* getName() const override { return "Event::MouseButtonUp"; }
 	};
 
-	class EAGLE_API MouseMovedEvent final : public MouseEvent
+	class EAGLE_API MouseMovedEvent : public MouseEvent
 	{
 	public:
-		MouseMovedEvent(const float mouseX, const float mouseY) :
-			m_MouseX(mouseX), m_MouseY(mouseY) {}
+		MouseMovedEvent(float _mouseX, float _mouseY) :
+			mouseX(_mouseX), mouseY(_mouseY) {}
 
-		[[nodiscard]] inline auto GetX() const -> float { return m_MouseX; }
-		[[nodiscard]] inline auto GetY() const -> float { return m_MouseY; }
+		inline float getX() const { return mouseX; }
+		inline float getY() const { return mouseY; }
 
-		inline static auto GetEventType() -> EventType { return EventType::MouseMoved; }
+		inline static EventType getEventType() { return EventType::MouseMoved; }
 
-		[[nodiscard]] virtual auto GetType() const -> EventType override { return GetEventType(); }
+		virtual EventType getType() const override { return getEventType(); }
 		//virtual int getCategory() const override { return EventCategory::EventMouse | EventCategory::EventInput; }
-		[[nodiscard]] virtual auto GetName() const -> const char* override { return "Event::MouseMoved"; }
+		virtual const char* getName() const override { return "Event::MouseMoved"; }
 
-		[[nodiscard]] auto ToString() const -> std::string override
+		std::string toString() const override
 		{
 			std::stringstream ss;
-			ss << GetName() << " - x: " << m_MouseX << ", y: " << m_MouseY;
+			ss << getName() << " - x: " << mouseX << ", y: " << mouseY;
 			return ss.str();
 		}
 	private:
-		float m_MouseX, m_MouseY;
+		float mouseX, mouseY;
 	};
 	
-	class EAGLE_API MouseScrollEvent final : public MouseEvent
+	class EAGLE_API MouseScrollEvent : public MouseEvent
 	{
 	public:
 		MouseScrollEvent(float _deltaX, float _deltaY) :
-			m_DeltaX(_deltaX), m_DeltaY(_deltaY) {}
+			deltaX(_deltaX), deltaY(_deltaY) {}
 
-		[[nodiscard]] inline auto GetDeltaX() const -> float { return m_DeltaX; }
-		[[nodiscard]] inline auto GetDeltaY() const -> float { return m_DeltaY; }
+		inline float getDeltaX() const { return deltaX; }
+		inline float getDeltaY() const { return deltaY; }
 
-		inline static auto GetEventType() -> EventType { return EventType::MouseScrolled; }
+		inline static EventType getEventType() { return EventType::MouseScrolled; }
 
-		[[nodiscard]] virtual auto GetType() const -> EventType override { return GetEventType(); }
+		virtual EventType getType() const override { return getEventType(); }
 		//virtual int getCategory() const override { return EventCategory::EventMouse | EventCategory::EventInput; }
-		[[nodiscard]] virtual auto GetName() const -> const char* override { return "Event::MouseScroll"; }
+		virtual const char* getName() const override { return "Event::MouseScroll"; }
 
-		[[nodiscard]] auto ToString() const -> std::string override
+		std::string toString() const override
 		{
 			std::stringstream ss;
-			ss << GetName() << " - dx: " << m_DeltaX << ", dy: " << m_DeltaY;
+			ss << getName() << " - dx: " << deltaX << ", dy: " << deltaY;
 			return ss.str();
 		}
 	private:
-		float m_DeltaX, m_DeltaY;
+		float deltaX, deltaY;
 	};
 
 }

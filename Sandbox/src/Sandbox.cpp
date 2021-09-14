@@ -1,15 +1,18 @@
 #include <Eagle.h>
 
+#include "Core/ImGui/ImGuiLayer.h"
+
 class SandboxLayer : public Eagle::Layer
 {
 public:
     SandboxLayer() : Layer("Sandbox Layer") {}
     
-    void OnUpdate() override 
+    void onUpdate() override 
     {
+        //PRINT("We in the app boys");
     }
 
-    void OnEvent(Eagle::Event& e) override
+    void onEvent(Eagle::Event& e) override
     {
         PRINT("Application handling {}", e);
     }
@@ -20,11 +23,14 @@ class Sandbox : public Eagle::Application
 public:
     Sandbox() : Application() 
     {
-        AddLayer(new SandboxLayer());
+        addLayer(new SandboxLayer());
+        addOverlay(new Eagle::ImGuiLayer());
     }
+    
+    virtual ~Sandbox() {}
 };
 
-auto Eagle::CreateApp() -> Eagle::Application*
+Eagle::Application* Eagle::CreateApp()
 {
     return new Sandbox();
 }

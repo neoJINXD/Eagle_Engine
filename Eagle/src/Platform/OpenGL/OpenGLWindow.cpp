@@ -1,4 +1,4 @@
-#if 0
+
 #include "pch.h"
 #include "OpenGLWindow.h"
 
@@ -10,12 +10,12 @@
 #include "Platform/ImGui/imgui_impl_opengl3.h"
 #include "Platform/ImGui/imgui_impl_glfw.h"
 
-static bool g_GLFWInitialized = false;
+static bool GLFWInitialized = false;
 
-//Eagle::Window* Eagle::Window::Create()
-//{
-//	return new OpenGLWindow();
-//}
+Eagle::Window* Eagle::Window::create()
+{
+	return new OpenGLWindow();
+}
 
 Eagle::OpenGLWindow::OpenGLWindow(const std::string& _title, unsigned int _width, unsigned int _height)
 {
@@ -25,18 +25,18 @@ Eagle::OpenGLWindow::OpenGLWindow(const std::string& _title, unsigned int _width
 
 	ENGINE_LOG("OpenGL Window Create with Title: {}, Width: {}, Height: {}", data.title, data.width, data.height);
 
-	if (!g_GLFWInitialized)
+	if (!GLFWInitialized)
 	{
 		int succ = glfwInit();
 		EAGLE_ASSERT(succ, "FAILED TO INIT GLFW!");
-		g_GLFWInitialized = true;
+		GLFWInitialized = true;
 	}
 
 	window = glfwCreateWindow(data.width, data.height, data.title.c_str(), nullptr, nullptr);
 	glfwMakeContextCurrent(window);
 	glfwSetWindowUserPointer(window, &data);
 	
-	SetVSync(true);
+	setVSync(true);
 
 	int succ = glewInit();
 	EAGLE_ASSERT(succ == GLEW_OK, "Glew failed to initialize!");
@@ -140,11 +140,11 @@ Eagle::OpenGLWindow::~OpenGLWindow()
 	glfwTerminate();
 }
 
-void Eagle::OpenGLWindow::Update()
+void Eagle::OpenGLWindow::update()
 {
 }
 
-void Eagle::OpenGLWindow::SetVSync(bool enabled)
+void Eagle::OpenGLWindow::setVSync(bool enabled)
 {
 	if (enabled)
 		glfwSwapInterval(1);
@@ -154,10 +154,10 @@ void Eagle::OpenGLWindow::SetVSync(bool enabled)
 	data.vSync = enabled;
 }
 
-bool Eagle::OpenGLWindow::GetVSync() const
+bool Eagle::OpenGLWindow::getVSync() const
 {
 	return data.vSync;
 }
 
 
-#endif
+
