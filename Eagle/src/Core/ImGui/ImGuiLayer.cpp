@@ -27,6 +27,7 @@ void Eagle::ImGuiLayer::onAttach()
     ImGuiIO& io = ImGui::GetIO();
 
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+    io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 
     ImGui::StyleColorsDark();
 
@@ -73,13 +74,21 @@ void Eagle::ImGuiLayer::onUpdate()
     ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
     ImGui::End();
     
+    ImGuiIO& io = ImGui::GetIO();
+    Application* app = Application::getInstance();
+    io.DisplaySize = ImVec2(app->getWindow().getWidth(), app->getWindow().getHeight());
 
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-    glfwPollEvents();
-    Window* win = &Application::getInstance()->getWindow(); // TODO store reference
-    glfwSwapBuffers((GLFWwindow*)win->getWindow());
+    if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+    {
+        GLFWwindow* backup_current_context = glfwGetCurrentContext();
+        ImGui::UpdatePlatformWindows();
+        ImGui::RenderPlatformWindowsDefault();
+        glfwMakeContextCurrent(backup_current_context);
+    }
+
 }
 
 void Eagle::ImGuiLayer::onEvent(Event& e)

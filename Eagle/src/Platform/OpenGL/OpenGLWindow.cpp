@@ -142,6 +142,8 @@ Eagle::OpenGLWindow::~OpenGLWindow()
 
 void Eagle::OpenGLWindow::update()
 {
+	glfwPollEvents();
+	glfwSwapBuffers(window);
 }
 
 void Eagle::OpenGLWindow::setVSync(bool enabled)
