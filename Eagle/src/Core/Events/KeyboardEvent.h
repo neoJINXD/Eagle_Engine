@@ -29,15 +29,22 @@ namespace Eagle
 	class EAGLE_API KeyDownEvent : public KeyEvent
 	{
 	public:
-		KeyDownEvent(int _keyCode) : KeyEvent(_keyCode) {}
+		KeyDownEvent(int _keyCode, bool _repeated) : KeyEvent(_keyCode), repeated(_repeated) {}
 
 		inline static EventType getEventType() { return EventType::KeyDown; }
 
 		virtual EventType getType() const override { return getEventType(); }
 		virtual const char* getName() const override { return "Event::KeyDown"; }
 
-	private:
+		std::string toString() const override
+		{
+			std::stringstream ss;
+			ss << getName() << " - Code: " << keyCode << ", isRepeated: " << repeated;
+			return ss.str();
+		}
 
+	private:
+		bool repeated;
 	};
 	
 	class EAGLE_API KeyUpEvent : public KeyEvent

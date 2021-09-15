@@ -1,4 +1,4 @@
-if (WIN32)
+if (MSVC)
     add_compile_definitions(EAGLE_WINDOWS)
 endif()
 add_compile_definitions(EAGLE_LIB)
@@ -35,7 +35,15 @@ target_link_libraries(Eagle PUBLIC spdlog::spdlog)
 
 # Vulkan
 find_package(Vulkan REQUIRED)
+message("Vulkan found? " ${Vulkan_FOUND})
+message("Alright, where is it? " ${Vulkan_LIBRARY})
+message("And I can include it? " ${Vulkan_INCLUDE_DIR})
 target_link_libraries(Eagle PRIVATE Vulkan::Vulkan)
+
+
+# Dear ImGUI
+add_subdirectory( ${PROJECT_SOURCE_DIR}/modules/imgui modules/imgui)
+target_link_libraries(Eagle PUBLIC imgui)
 
 # target_include_directories(EAGLE_LIB PUBLIC ${EAGLE_SRC_DIR})
 target_include_directories(Eagle PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
@@ -46,3 +54,18 @@ if(WIN32)
 endif()
 
 target_precompile_headers(Eagle PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src/pch.h")
+
+# Post build copy of DLL
+if(WIN32)
+    add_custom_command(TARGET Eagle POST_BUILD
+                    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/Sandbox/$<CONFIG>/)
+    add_custom_command(TARGET Eagle POST_BUILD
+                    COMMAND ${CMAKE_COMMAND} -E copy
+                    $<TARGET_FILE_DIR:Eagle>/Eagle.dll ${CMAKE_BINARY_DIR}/Sandbox/$<CONFIG>/)
+else()
+    add_custom_command(TARGET Eagle POST_BUILD
+                    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/Sandbox/)
+    add_custom_command(TARGET Eagle POST_BUILD
+                    COMMAND ${CMAKE_COMMAND} -E copy
+                    $<TARGET_FILE_DIR:Eagle>/libEagle.so ${CMAKE_BINARY_DIR}/Sandbox/)
+endif()

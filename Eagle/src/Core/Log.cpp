@@ -11,6 +11,8 @@ void Eagle::Log::init()
 
 	engineLogger = spdlog::stdout_color_mt("EAGLE");
 	appLogger = spdlog::stdout_color_mt("APP");
+	engineLogger->set_level(spdlog::level::trace);
+	appLogger->set_level(spdlog::level::trace);
 }
 
 void Eagle::Log::shutdown()

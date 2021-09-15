@@ -10,3 +10,6 @@
 [submodule "modules/spdlog"]
 	path = modules/spdlog
 	url = https://github.com/gabime/spdlog.git
+[submodule "modules/imgui"]
+	path = modules/imgui
+	url = https://github.com/neoJINXD/imgui.git
