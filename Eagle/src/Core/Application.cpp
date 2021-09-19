@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Application.h"
 #include "Core/Log.h"
+//#include "Core/ImGui/ImGuiLayer.h"
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -15,6 +16,11 @@ Eagle::Application::Application() :
 	instance = this;
 	window = Window::create();
 	window->setEventCallback(std::bind(&Application::onEvent, this, std::placeholders::_1));
+
+	_ImGuiLayer = new ImGuiLayer();
+	addOverlay(_ImGuiLayer);
+
+	ImgGuiCtx = _ImGuiLayer->getImGuiCtx();
 }
 
 Eagle::Application::~Application()
@@ -33,6 +39,12 @@ void Eagle::Application::run()
 
 		for (Layer* layer : layerStack)
 			layer->onUpdate();
+
+		_ImGuiLayer->ImGuiInitFrame();
+		for (Layer* layer : layerStack)
+			layer->onImGUIUpdate();
+		_ImGuiLayer->ImGuiRenderFrame();
+
 		window->update();
 	}
 }

@@ -2,7 +2,6 @@
 
 Eagle::LayerStack::LayerStack()
 {
-	currentLayer = stack.begin();
 }
 
 Eagle::LayerStack::~LayerStack()
@@ -13,7 +12,8 @@ Eagle::LayerStack::~LayerStack()
 
 void Eagle::LayerStack::pushLayer(Layer* layer)
 {
-	currentLayer = stack.emplace(currentLayer, layer);
+	stack.emplace(stack.begin() + currentLayerIndex, layer);
+	currentLayerIndex++;
 	layer->onAttach();
 }
 

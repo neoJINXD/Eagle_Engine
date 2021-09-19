@@ -5,6 +5,7 @@
 #include "Events/ApplicationEvent.h"
 #include "Core/Window.h"
 #include "Core/LayerStack.h"
+#include "Core/ImGui/ImGuiLayer.h"
 
 namespace Eagle
 {
@@ -25,9 +26,14 @@ namespace Eagle
 		inline Window& getWindow() { return *window; }
 		static Application* getInstance() { return instance; }
 
+	protected:
+		ImGuiContext* ImgGuiCtx;
+
 	private:
 		static Application* _instance;
 		LayerStack layerStack;
+
+		ImGuiLayer* _ImGuiLayer;
 
 		Window* window;
 		bool isRunning = true;

@@ -27,6 +27,7 @@ namespace Eagle
 		EAGLE_DISABLE_WARNING_PUSH
 		LayerVector stack;
 		LayerIterator currentLayer;
+		unsigned int currentLayerIndex = 0;
 		EAGLE_DISABLE_WARNING_POP
 	};
 }

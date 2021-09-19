@@ -15,7 +15,7 @@ add_library(
 
 # GLFW
 add_subdirectory( ${PROJECT_SOURCE_DIR}/modules/glfw modules/glfw )
-target_link_libraries(Eagle PRIVATE glfw)
+target_link_libraries(Eagle PUBLIC glfw)
 # set( GLFW_BUILD_DOCS OFF CACHE BOOL  "GLFW lib only" )
 # set( GLFW_INSTALL OFF CACHE BOOL  "GLFW lib only" )
 
@@ -26,7 +26,7 @@ target_link_libraries(Eagle PUBLIC libglew_static)
 
 # GLM
 add_subdirectory( ${PROJECT_SOURCE_DIR}/modules/glm modules/glm EXCLUDE_FROM_ALL )
-target_link_libraries(Eagle PRIVATE glm)
+target_link_libraries(Eagle PUBLIC glm)
 
 # spdlog
 add_subdirectory( ${PROJECT_SOURCE_DIR}/modules/spdlog modules/spdlog)
