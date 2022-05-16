@@ -38,8 +38,8 @@ Eagle::OpenGLWindow::OpenGLWindow(const std::string& _title, unsigned int _width
 	
 	setVSync(true);
 
-	int succ = glewInit();
-	EAGLE_ASSERT(succ == GLEW_OK, "Glew failed to initialize!");
+	int fail = gladLoadGL(glfwGetProcAddress);
+	EAGLE_ASSERT(fail, "Glad failed to initialize!");
 
 	glfwSetWindowCloseCallback(window, [](GLFWwindow* window) {
 		WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);

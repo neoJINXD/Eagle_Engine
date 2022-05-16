@@ -3,7 +3,7 @@
 #include "Core/Log.h"
 //#include "Core/ImGui/ImGuiLayer.h"
 
-#include <GL/glew.h>
+#include <glad/gl.h>
 #include <GLFW/glfw3.h>
 
 Eagle::Application* Eagle::Application::instance = nullptr;

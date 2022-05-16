@@ -1,6 +1,7 @@
+#if 0
 #include "shader.h"
 
-#include <GL/glew.h>
+//#include <GL/glew.h>
 
 Eagle::Shader::Shader(string vertFilePath, string fragFilePath)
 {
@@ -167,3 +168,4 @@ void Eagle::Shader::setMat4(const std::string& name, const glm::mat4& mat) const
 {
     glUniformMatrix4fv(glGetUniformLocation(shaderProgram, name.c_str()), 1, GL_FALSE, &mat[0][0]);
 }
+#endif

@@ -21,8 +21,12 @@ target_link_libraries(Eagle PUBLIC glfw)
 
 # GLEW
 # add_definitions(-DGLEW_STATIC)
-add_subdirectory( ${PROJECT_SOURCE_DIR}/modules/glew-cmake modules/glew-cmake EXCLUDE_FROM_ALL)
-target_link_libraries(Eagle PUBLIC libglew_static)
+# add_subdirectory( ${PROJECT_SOURCE_DIR}/modules/glew-cmake modules/glew-cmake)
+# target_link_libraries(Eagle PUBLIC libglew_static)
+
+# GLAD
+add_subdirectory( ${PROJECT_SOURCE_DIR}/modules/glad modules/glad )
+target_link_libraries(Eagle PRIVATE glad)
 
 # GLM
 add_subdirectory( ${PROJECT_SOURCE_DIR}/modules/glm modules/glm EXCLUDE_FROM_ALL )
