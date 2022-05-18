@@ -16,6 +16,7 @@ Eagle::Application::Application() :
 	instance = this;
 	window = Window::create();
 	window->setEventCallback(std::bind(&Application::onEvent, this, std::placeholders::_1));
+	renderer = Renderer::create();
 
 	_ImGuiLayer = new ImGuiLayer();
 	addOverlay(_ImGuiLayer);
@@ -26,6 +27,7 @@ Eagle::Application::Application() :
 Eagle::Application::~Application()
 {
 	delete window;
+	delete renderer;
 }
 
 void Eagle::Application::run()
@@ -34,8 +36,7 @@ void Eagle::Application::run()
 
 	while (isRunning)
 	{
-		glClearColor(1, 1, 1, 1);
-		glClear(GL_COLOR_BUFFER_BIT);
+		renderer->startFrame();
 
 		for (Layer* layer : layerStack)
 			layer->onUpdate();
@@ -44,6 +45,8 @@ void Eagle::Application::run()
 		for (Layer* layer : layerStack)
 			layer->onImGUIUpdate();
 		_ImGuiLayer->ImGuiRenderFrame();
+
+		renderer->endFrame();
 
 		window->update();
 	}

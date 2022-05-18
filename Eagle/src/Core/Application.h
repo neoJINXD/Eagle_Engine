@@ -4,6 +4,7 @@
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
 #include "Core/Window.h"
+#include "Core/Renderer/Renderer.h"
 #include "Core/LayerStack.h"
 #include "Core/ImGui/ImGuiLayer.h"
 
@@ -36,6 +37,7 @@ namespace Eagle
 		ImGuiLayer* _ImGuiLayer;
 
 		Window* window;
+		Renderer* renderer;
 		bool isRunning = true;
 
 		static Application* instance;

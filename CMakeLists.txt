@@ -3,7 +3,7 @@
 
 cmake_minimum_required(VERSION 3.18)
 project( Project_Eagle VERSION 0.0.0 )
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 
 if (WIN32)
 	set_property(GLOBAL PROPERTY USE_FOLDERS ON)
