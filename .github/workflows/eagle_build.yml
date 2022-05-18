@@ -20,7 +20,30 @@ env:
   BUILD_TYPE: Release
 
 jobs:
+  Clang-Format:
+    name: Format and Style Check
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        path:
+          - check: 'Eagle'
+            exclude: '(impl)'
+          - check: 'Sandbox'
+            exclude: ''              # Nothing to exclude
+    steps:
+    - name: Checkout reposistory and submodules
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
+    - name: Run clang-format style check
+      uses: jidicula/clang-format-action@v4.5.0
+      with:
+        clang-format-version: '14'
+        check-path: ${{ matrix.path['check'] }}
+        exclude-regex: ${{ matrix.path['exclude'] }}
+
   Ubuntu:
+    name: Build Ubuntu
     # The CMake configure and build commands are platform agnostic and should work equally
     # well on Windows or Mac.  You can convert this to a matrix build if you need
     # cross-platform coverage.
@@ -74,6 +97,7 @@ jobs:
       shell: bash
       # Execute the build.  You can specify a specific target with "--target <NAME>"
       run: cmake --build . --config $BUILD_TYPE
+
 
     # - name: Test
     #   working-directory: ${{runner.workspace}}/build
