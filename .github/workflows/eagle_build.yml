@@ -36,11 +36,13 @@ jobs:
       with:
         submodules: recursive
     - name: Run clang-format style check
-      uses: jidicula/clang-format-action@v4.5.0
+      uses: DoozyX/clang-format-lint-action@v0.13
       with:
-        clang-format-version: '14'
-        check-path: ${{ matrix.path['check'] }}
-        exclude-regex: ${{ matrix.path['exclude'] }}
+        source: './Eagle ./Sandbox'
+        exclude: './modules ./Eagle/src/Platform/ImGui'
+        extensions: 'h,cpp'
+        clangFormatVersion: 13
+        style: file
 
   Ubuntu:
     name: Build Ubuntu
