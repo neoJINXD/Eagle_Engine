@@ -26,9 +26,9 @@ jobs:
     strategy:
       matrix:
         path:
-          - check: 'Eagle'
-            exclude: '(impl)'
-          - check: 'Sandbox'
+          - check: './Eagle'
+            exclude: './Eagle/src/Platform/ImGui'
+          - check: './Sandbox'
             exclude: ''              # Nothing to exclude
     steps:
     - name: Checkout reposistory and submodules
@@ -38,8 +38,8 @@ jobs:
     - name: Run clang-format style check
       uses: DoozyX/clang-format-lint-action@v0.13
       with:
-        source: './Eagle ./Sandbox'
-        exclude: './modules ./Eagle/src/Platform/ImGui'
+        source: ${{ matrix.path['check'] }}
+        exclude: ${{ matrix.path['exclude'] }}
         extensions: 'h,cpp'
         clangFormatVersion: 13
         style: file
