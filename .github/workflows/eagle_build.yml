@@ -33,8 +33,6 @@ jobs:
     steps:
     - name: Checkout reposistory and submodules
       uses: actions/checkout@v2
-      with:
-        submodules: recursive
     - name: Run clang-format style check
       uses: DoozyX/clang-format-lint-action@v0.13
       with:
