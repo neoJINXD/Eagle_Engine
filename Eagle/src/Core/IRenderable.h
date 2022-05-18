@@ -1,9 +1,9 @@
 #pragma once
-namespace Eagle 
+namespace Eagle
 {
-	class IRenderable
-	{
-	public:
-		virtual void render() = 0;
-	};
+   class IRenderable
+   {
+    public:
+      virtual void render() = 0;
+   };
 }

@@ -5,16 +5,16 @@
 
 #ifdef EAGLE_WINDOWS
 
-//#define _DEBUG
-#ifdef _DEBUG
-#define _CRTDBG_MAP_ALLOC
-#include <crtdbg.h>
-#include <stdlib.h>
-#endif
+   //#define _DEBUG
+   #ifdef _DEBUG
+      #define _CRTDBG_MAP_ALLOC
+      #include <crtdbg.h>
+      #include <stdlib.h>
+   #endif
 
-#ifdef _DEBUG
-#define new new( _NORMAL_BLOCK , __FILE__ , __LINE__ )
-#endif
+   #ifdef _DEBUG
+      #define new new (_NORMAL_BLOCK, __FILE__, __LINE__)
+   #endif
 
 #endif
 
@@ -23,19 +23,19 @@ extern Eagle::Application* Eagle::CreateApp();
 int main(int argc, char** argv)
 {
 #ifdef EAGLE_WINDOWS
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+   _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 #endif
-	Eagle::Log::init();
+   Eagle::Log::init();
 
-	ENGINE_LOG("Welcome to the Motherland");
+   ENGINE_LOG("Welcome to the Motherland");
 
-	auto app = Eagle::CreateApp();
-	app->run();
-	delete app;
+   auto app = Eagle::CreateApp();
+   app->run();
+   delete app;
 
-	Eagle::Log::shutdown();
+   Eagle::Log::shutdown();
 
-	return 0;
+   return 0;
 }
 
 //#endif

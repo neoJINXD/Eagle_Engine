@@ -4,63 +4,62 @@
 
 namespace Eagle
 {
-	class EAGLE_API WindowCloseEvent : public Event
-	{
-	public:
-		WindowCloseEvent() {}
+   class EAGLE_API WindowCloseEvent : public Event
+   {
+    public:
+      WindowCloseEvent() {}
 
-		inline static EventType getEventType() { return EventType::WindowClose; }
-		
-		virtual EventType getType() const override { return getEventType(); }
-		virtual int getCategory() const override { return EventCategory::EventApplication; }
-		virtual const char* getName() const override { return "Event::WindowClose"; }
-	};
+      inline static EventType getEventType() { return EventType::WindowClose; }
 
-	class EAGLE_API WindowResizeEvent : public Event
-	{
-	public:
-		WindowResizeEvent(unsigned int _width, unsigned int _height) :
-			width(_width), height(_height) {}
+      virtual EventType getType() const override { return getEventType(); }
+      virtual int getCategory() const override { return EventCategory::EventApplication; }
+      virtual const char* getName() const override { return "Event::WindowClose"; }
+   };
 
-		inline static EventType getEventType() { return EventType::WindowResize; }
+   class EAGLE_API WindowResizeEvent : public Event
+   {
+    public:
+      WindowResizeEvent(unsigned int _width, unsigned int _height) : width(_width), height(_height)
+      {}
 
-		virtual EventType getType() const override { return getEventType(); }
-		virtual int getCategory() const override { return EventCategory::EventApplication; }
-		virtual const char* getName() const override { return "Event::WindowResize"; }
+      inline static EventType getEventType() { return EventType::WindowResize; }
 
-		std::string toString() const override 
-		{ 
-			std::stringstream ss;
-			ss << getName() << " - " << width << "x" << height;
-			return ss.str(); 
-		}
+      virtual EventType getType() const override { return getEventType(); }
+      virtual int getCategory() const override { return EventCategory::EventApplication; }
+      virtual const char* getName() const override { return "Event::WindowResize"; }
 
-	private:
-		unsigned int width, height;
-	};
+      std::string toString() const override
+      {
+         std::stringstream ss;
+         ss << getName() << " - " << width << "x" << height;
+         return ss.str();
+      }
 
-	class EAGLE_API WindowFocusEvent : public Event
-	{
-	public:
-		WindowFocusEvent() {}
+    private:
+      unsigned int width, height;
+   };
 
-		inline static EventType getEventType() { return EventType::WindowFocus; }
+   class EAGLE_API WindowFocusEvent : public Event
+   {
+    public:
+      WindowFocusEvent() {}
 
-		virtual EventType getType() const override { return getEventType(); }
-		virtual int getCategory() const override { return EventCategory::EventApplication; }
-		virtual const char* getName() const override { return "Event::WindowFocus"; }
-	};
+      inline static EventType getEventType() { return EventType::WindowFocus; }
 
+      virtual EventType getType() const override { return getEventType(); }
+      virtual int getCategory() const override { return EventCategory::EventApplication; }
+      virtual const char* getName() const override { return "Event::WindowFocus"; }
+   };
 
-	class EAGLE_API WindowUnfocusEvent : public Event
-	{
-	public:
-		WindowUnfocusEvent() {}
+   class EAGLE_API WindowUnfocusEvent : public Event
+   {
+    public:
+      WindowUnfocusEvent() {}
 
-		inline static EventType getEventType() { return EventType::WindowUnfocus; }
+      inline static EventType getEventType() { return EventType::WindowUnfocus; }
 
-		virtual EventType getType() const override { return getEventType(); }
-		virtual int getCategory() const override { return EventCategory::EventApplication; }
-		virtual const char* getName() const override { return "Event::WindowUnfocus"; }
-	};
+      virtual EventType getType() const override { return getEventType(); }
+      virtual int getCategory() const override { return EventCategory::EventApplication; }
+      virtual const char* getName() const override { return "Event::WindowUnfocus"; }
+   };
 }

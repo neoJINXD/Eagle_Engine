@@ -3,8 +3,7 @@
 
 namespace Eagle
 {
-	class EAGLE_API Mesh
-	{
-	};
+   class EAGLE_API Mesh
+   {
+   };
 }
-

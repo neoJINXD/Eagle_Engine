@@ -10,43 +10,41 @@
 
 namespace Eagle
 {
-	class EAGLE_API Application
-	{
-	public:
-		Application();
-		virtual ~Application();
+   class EAGLE_API Application
+   {
+    public:
+      Application();
+      virtual ~Application();
 
-		//static void init();
-		void run();
+      // static void init();
+      void run();
 
-		void onEvent(Event& e);
+      void onEvent(Event& e);
 
-		void addLayer(Layer* layer);
-		void addOverlay(Layer* layer);
+      void addLayer(Layer* layer);
+      void addOverlay(Layer* layer);
 
-		inline Window& getWindow() { return *window; }
-		static Application* getInstance() { return instance; }
+      inline Window& getWindow() { return *window; }
+      static Application* getInstance() { return instance; }
 
-	protected:
-		ImGuiContext* ImgGuiCtx;
+    protected:
+      ImGuiContext* ImgGuiCtx;
 
-	private:
-		static Application* _instance;
-		LayerStack layerStack;
+    private:
+      static Application* _instance;
+      LayerStack layerStack;
 
-		ImGuiLayer* _ImGuiLayer;
+      ImGuiLayer* _ImGuiLayer;
 
-		Window* window;
-		Renderer* renderer;
-		bool isRunning = true;
+      Window* window;
+      Renderer* renderer;
+      bool isRunning = true;
 
-		static Application* instance;
+      static Application* instance;
 
-	private:
-		bool onClose(WindowCloseEvent& e);
-	};
+    private:
+      bool onClose(WindowCloseEvent& e);
+   };
 
-
-
-	Application* CreateApp();
+   Application* CreateApp();
 }

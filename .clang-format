@@ -4,7 +4,7 @@ AlignAfterOpenBracket: Align
 AlignConsecutiveAssignments: false
 AlignConsecutiveDeclarations: false
 AlignConsecutiveMacros: false
-AlignEscapedNewlines: Right
+AlignEscapedNewlines: Left
 AlignOperands: false
 AlignTrailingComments: true
 AllowAllArgumentsOnNextLine: true
@@ -49,6 +49,7 @@ ContinuationIndentWidth: 3
 CommentPragmas: '^ EAGLE pragma:'
 Cpp11BracedListStyle: true
 DerivePointerAlignment: true
+FixNamespaceComments: false
 IndentCaseLabels: true
 IndentPPDirectives: BeforeHash
 IndentWidth: 3
