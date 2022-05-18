@@ -4,6 +4,7 @@
 //#include "Core/ImGui/ImGuiLayer.h"
 
 #include <glad/gl.h>
+
 #include <GLFW/glfw3.h>
 
 Eagle::Application* Eagle::Application::instance = nullptr;
@@ -65,13 +66,11 @@ void Eagle::Application::onEvent(Event& e)
 	}
 }
 
-void Eagle::Application::addLayer(Layer* layer)
-{
+void Eagle::Application::addLayer(Layer* layer){
 	layerStack.pushLayer(layer);
 }
 
-void Eagle::Application::addOverlay(Layer* layer)
-{
+void Eagle::Application::addOverlay(Layer* layer){
 	layerStack.pushOverlay(layer);
 }
 
