@@ -34,13 +34,17 @@ jobs:
     - name: Checkout reposistory and submodules
       uses: actions/checkout@v2
     - name: Run clang-format style check
-      uses: DoozyX/clang-format-lint-action@v0.13
+      # uses: DoozyX/clang-format-lint-action@v0.13
+      uses: jidicula/clang-format-action@v4.5.0
       with:
-        source: ${{ matrix.path['check'] }}
-        exclude: ${{ matrix.path['exclude'] }}
-        extensions: 'h,cpp'
-        clangFormatVersion: 13
-        style: file
+        clang-format-version: '14'
+        check-path: ${{ matrix.path['check'] }}
+        exclude-regex: ${{ matrix.path['exclude'] }}
+        # source: ${{ matrix.path['check'] }}
+        # exclude: ${{ matrix.path['exclude'] }}
+        # extensions: 'h,cpp'
+        # clangFormatVersion: 13
+        # style: file
 
   Ubuntu:
     name: Build Ubuntu
