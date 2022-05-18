@@ -28,12 +28,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # - uses: actions/checkout@v2
-    - name: Checkout reposistory
-      uses: actions/checkout@master
-      
-    - name: Checkout submodules
-      uses: textbook/git-checkout-submodule-action@master
+    - name: Checkout reposistory and submodules
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
 
     - name: Install OpenGL Binaries
       run: |
