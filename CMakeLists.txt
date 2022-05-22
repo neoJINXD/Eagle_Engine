@@ -13,6 +13,7 @@ if (NOT WIN32)
 	option(CMAKE_POSITION_INDEPENDENT_CODE "CMAKE_POSITION_INDEPENDENT_CODE" ON)
 endif()
 
+# set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-format-style='file'")
 
 # # OpenGL Module
 # find_package( OpenGL REQUIRED )

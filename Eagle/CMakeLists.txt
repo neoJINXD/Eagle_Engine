@@ -5,12 +5,14 @@ add_compile_definitions(EAGLE_LIB)
 
 file(GLOB_RECURSE Eagle_CPP "src/*.cpp")
 file(GLOB_RECURSE Eagle_H "src/*.h")
+file(GLOB_RECURSE Eagle_SHADER "src/*.glsl")
 
 # Eagle Library
 add_library(
     Eagle SHARED
     ${Eagle_CPP}
     ${Eagle_H}
+    ${Eagle_SHADER}
     )
 
 # GLFW
@@ -52,8 +54,19 @@ target_link_libraries(Eagle PUBLIC imgui)
 # target_include_directories(EAGLE_LIB PUBLIC ${EAGLE_SRC_DIR})
 target_include_directories(Eagle PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
 
+# Grabbing Shader Files
+add_custom_command(TARGET Eagle PRE_BUILD
+                    COMMAND ${CMAKE_COMMAND} -E copy_directory 
+                    ${CMAKE_CURRENT_SOURCE_DIR}/src/shaders/ $<TARGET_FILE_DIR:Eagle>/shaders/)
+
+add_custom_command(TARGET Eagle PRE_BUILD
+                    COMMAND ${CMAKE_COMMAND} -E copy_directory 
+                    ${CMAKE_CURRENT_SOURCE_DIR}/src/shaders/ $<TARGET_FILE_DIR:Eagle>/../shaders/)
+
+
 if(WIN32)
-	file(GLOB_RECURSE EAGLE_SRC RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" "*.cpp" "*.h")
+	file(GLOB_RECURSE EAGLE_SRC RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" "*.cpp" "*.h" "*.glsl")
+    message("Alright, my EAGLE_SRC files: " ${EAGLE_SRC})
 	source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${EAGLE_SRC})
 endif()
 

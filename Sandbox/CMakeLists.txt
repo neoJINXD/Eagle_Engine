@@ -4,12 +4,14 @@ endif()
 
 file(GLOB_RECURSE Sandbox_CPP "src/*.cpp")
 file(GLOB_RECURSE Sandbox_H "src/*.h")
+file(GLOB_RECURSE Sandbox_SHADER "src/*.glsl")
 
 # Sandbox EXE
 add_executable(
     Sandbox 
     ${Sandbox_CPP}
     ${Sandbox_H}
+    ${Sandbox_SHADER}
     )
 
 
@@ -30,6 +32,6 @@ add_custom_command(TARGET Sandbox PRE_BUILD
 
 
 if(WIN32)
-	file(GLOB_RECURSE SANDBOX_SRC RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" "*.cpp" "*.h")
+	file(GLOB_RECURSE SANDBOX_SRC RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" "*.cpp" "*.h" "*.glsl")
 	source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SANDBOX_SRC})
 endif()
