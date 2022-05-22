@@ -14,19 +14,59 @@ Eagle::OpenGLRenderer::OpenGLRenderer()
 
    // TEMP
 
-   unsigned int VBO;
+   //unsigned int VBO;
+   glGenVertexArrays(1, &VAO);
    glGenBuffers(1, &VBO);
+   glBindVertexArray(VAO);
+
    glBindBuffer(GL_ARRAY_BUFFER, VBO);
    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
+   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+   glEnableVertexAttribArray(0);
 
+   glBindBuffer(GL_ARRAY_BUFFER, 0);
+   glBindVertexArray(0);
+
+
+   const char* vertexShaderSource = "#version 430 core\n"
+                                    "layout (location = 0) in vec3 aPos;\n"
+                                    "void main()\n"
+                                    "{\n"
+                                    "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+                                    "}\0";
+   const char* fragmentShaderSource = "#version 430 core\n"
+                                      "out vec4 FragColor;\n"
+                                      "void main()\n"
+                                      "{\n"
+                                      "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+                                      "}\0";
+
+   unsigned int vertShader;
+   vertShader = glCreateShader(GL_VERTEX_SHADER);
+   glShaderSource(vertShader, 1, &vertexShaderSource, nullptr);
+   glCompileShader(vertShader);
+
+   unsigned int fragShader;
+   fragShader = glCreateShader(GL_FRAGMENT_SHADER);
+   glShaderSource(fragShader, 1, &fragmentShaderSource, nullptr);
+   glCompileShader(fragShader);
+
+   //unsigned int shaderProgram;
+   shaderProgram = glCreateProgram();
+   glAttachShader(shaderProgram, vertShader);
+   glAttachShader(shaderProgram, fragShader);
+   glLinkProgram(shaderProgram);
+
+   glDeleteShader(vertShader);
+   glDeleteShader(fragShader);
 }
 
 Eagle::OpenGLRenderer::~OpenGLRenderer() {}
 
 void Eagle::OpenGLRenderer::startFrame() const
 {
-   glClearColor(0, 1, 1, 1); // TODO not hardcoded
+   glClearColor(1, 1, 1, 1); // TODO not hardcoded
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
    glViewport(0, 0, 1280, 720); // TODO not hardcoded
 }
@@ -38,7 +78,10 @@ void Eagle::OpenGLRenderer::endFrame() const
 
 void Eagle::OpenGLRenderer::render() const 
 {
-    
+   glUseProgram(shaderProgram);
+   glBindVertexArray(VAO);
+   glDrawArrays(GL_TRIANGLES, 0, 3);
+   glBindVertexArray(0);
 }
 
 void Eagle::OpenGLRenderer::checkGlErrors() const

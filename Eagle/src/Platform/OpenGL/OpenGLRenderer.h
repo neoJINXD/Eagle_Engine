@@ -20,7 +20,10 @@ namespace Eagle
       {
          -0.5f, -0.5f, 0.0f,
           0.5f, -0.5f, 0.0f,
-          0.5f,  0.5f, 0.0f
+          0.0f,  0.5f, 0.0f
       };
+
+      unsigned int shaderProgram;
+      unsigned int VBO, VAO;
    };
 }
