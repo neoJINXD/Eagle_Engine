@@ -17,6 +17,7 @@ namespace Eagle
 
       virtual void startFrame() const = 0;
       virtual void endFrame() const = 0;
+      virtual void render() const = 0;
 
       static Renderer* create();
 

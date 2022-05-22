@@ -3,7 +3,7 @@
 #include "Core/Log.h"
 //#include "Core/ImGui/ImGuiLayer.h"
 
-#include <glad/gl.h>
+//#include <glad/gl.h>
 
 #include <GLFW/glfw3.h>
 
@@ -47,6 +47,8 @@ void Eagle::Application::run()
       for (Layer* layer : layerStack)
          layer->onImGUIUpdate();
       _ImGuiLayer->ImGuiRenderFrame();
+
+      renderer->render();
 
       renderer->endFrame();
 
