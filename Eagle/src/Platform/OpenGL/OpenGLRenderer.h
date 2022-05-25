@@ -7,7 +7,7 @@ namespace Eagle
    {
     public:
       OpenGLRenderer();
-      virtual ~OpenGLRenderer();
+      ~OpenGLRenderer() override;
 
       void startFrame() const override;
       void endFrame() const override;
@@ -16,12 +16,7 @@ namespace Eagle
     private:
       void checkGlErrors() const;
 
-      float vertices[9] = 
-      {
-         -0.5f, -0.5f, 0.0f,
-          0.5f, -0.5f, 0.0f,
-          0.0f,  0.5f, 0.0f
-      };
+      float vertices[9] = {-0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 0.0f};
 
       unsigned int shaderProgram;
       unsigned int VBO, VAO;

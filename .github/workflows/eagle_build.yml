@@ -27,7 +27,7 @@ jobs:
       matrix:
         path:
           - check: './Eagle'
-            exclude: './Eagle/src/Platform/ImGui'
+            exclude: './Eagle/src/Platform/ImGui ./Eagle/src/Core/Primitives'
           - check: './Sandbox'
             exclude: ''              # Nothing to exclude
     steps:
