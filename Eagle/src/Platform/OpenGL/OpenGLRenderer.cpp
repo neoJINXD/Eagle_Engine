@@ -14,7 +14,7 @@ Eagle::OpenGLRenderer::OpenGLRenderer()
 
    // TEMP
 
-   //unsigned int VBO;
+   // unsigned int VBO;
    glGenVertexArrays(1, &VAO);
    glGenBuffers(1, &VBO);
    glBindVertexArray(VAO);
@@ -27,7 +27,6 @@ Eagle::OpenGLRenderer::OpenGLRenderer()
 
    glBindBuffer(GL_ARRAY_BUFFER, 0);
    glBindVertexArray(0);
-
 
    const char* vertexShaderSource = "#version 430 core\n"
                                     "layout (location = 0) in vec3 aPos;\n"
@@ -52,7 +51,7 @@ Eagle::OpenGLRenderer::OpenGLRenderer()
    glShaderSource(fragShader, 1, &fragmentShaderSource, nullptr);
    glCompileShader(fragShader);
 
-   //unsigned int shaderProgram;
+   // unsigned int shaderProgram;
    shaderProgram = glCreateProgram();
    glAttachShader(shaderProgram, vertShader);
    glAttachShader(shaderProgram, fragShader);
@@ -76,7 +75,7 @@ void Eagle::OpenGLRenderer::endFrame() const
    checkGlErrors();
 }
 
-void Eagle::OpenGLRenderer::render() const 
+void Eagle::OpenGLRenderer::render() const
 {
    glUseProgram(shaderProgram);
    glBindVertexArray(VAO);
